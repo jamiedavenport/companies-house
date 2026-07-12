@@ -3,5 +3,11 @@ import { defineConfig } from "@hey-api/openapi-ts";
 export default defineConfig({
   input: "./spec/companies-house.json",
   output: "src/generated",
-  plugins: ["@hey-api/client-fetch"],
+  plugins: [
+    "@hey-api/client-fetch",
+    {
+      instance: "CompaniesHouse",
+      name: "@hey-api/sdk",
+    },
+  ],
 });

@@ -124,753 +124,785 @@ export type Options<
   meta?: Record<string, unknown>;
 };
 
-/**
- * Search All
- * Search companies, officers and disqualified officers
- */
-export const searchAll = <ThrowOnError extends boolean = false>(
-  options: Options<SearchAllData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<SearchAllResponses, SearchAllErrors, ThrowOnError>({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/search",
-    ...options,
-  });
-};
+class _HeyApiClient {
+  protected _client: Client = client;
 
-/**
- * Search companies
- * Search company information
- */
-export const searchCompanies = <ThrowOnError extends boolean = false>(
-  options: Options<SearchCompaniesData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    SearchCompaniesResponses,
-    SearchCompaniesErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/search/companies",
-    ...options,
-  });
-};
+  constructor(args?: { client?: Client }) {
+    if (args?.client) {
+      this._client = args.client;
+    }
+  }
+}
 
-/**
- * Search company officers
- * Search for officer information
- */
-export const searchOfficers = <ThrowOnError extends boolean = false>(
-  options: Options<SearchOfficersData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    SearchOfficersResponses,
-    SearchOfficersErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/search/officers",
-    ...options,
-  });
-};
+export class CompaniesHouse extends _HeyApiClient {
+  /**
+   * Search All
+   * Search companies, officers and disqualified officers
+   */
+  public searchAll<ThrowOnError extends boolean = false>(
+    options: Options<SearchAllData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<SearchAllResponses, SearchAllErrors, ThrowOnError>({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/search",
+      ...options,
+    });
+  }
 
-/**
- * Search disqualified officers
- * Search for disqualified officer information
- */
-export const searchDisqualifiedOfficers = <ThrowOnError extends boolean = false>(
-  options: Options<SearchDisqualifiedOfficersData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    SearchDisqualifiedOfficersResponses,
-    SearchDisqualifiedOfficersErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/search/disqualified-officers",
-    ...options,
-  });
-};
+  /**
+   * Search companies
+   * Search company information
+   */
+  public searchCompanies<ThrowOnError extends boolean = false>(
+    options: Options<SearchCompaniesData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      SearchCompaniesResponses,
+      SearchCompaniesErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/search/companies",
+      ...options,
+    });
+  }
 
-/**
- * Search for a dissolved company
- * Search for a dissolved company
- */
-export const searchDissolvedCompanies = <ThrowOnError extends boolean = false>(
-  options: Options<SearchDissolvedCompaniesData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    SearchDissolvedCompaniesResponses,
-    SearchDissolvedCompaniesErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/dissolved-search/companies",
-    ...options,
-  });
-};
+  /**
+   * Search company officers
+   * Search for officer information
+   */
+  public searchOfficers<ThrowOnError extends boolean = false>(
+    options: Options<SearchOfficersData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      SearchOfficersResponses,
+      SearchOfficersErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/search/officers",
+      ...options,
+    });
+  }
 
-/**
- * Search for a company
- * Search for a company
- */
-export const searchCompaniesAlphabetically = <ThrowOnError extends boolean = false>(
-  options: Options<SearchCompaniesAlphabeticallyData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    SearchCompaniesAlphabeticallyResponses,
-    SearchCompaniesAlphabeticallyErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/alphabetical-search/companies",
-    ...options,
-  });
-};
+  /**
+   * Search disqualified officers
+   * Search for disqualified officer information
+   */
+  public searchDisqualifiedOfficers<ThrowOnError extends boolean = false>(
+    options: Options<SearchDisqualifiedOfficersData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      SearchDisqualifiedOfficersResponses,
+      SearchDisqualifiedOfficersErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/search/disqualified-officers",
+      ...options,
+    });
+  }
 
-/**
- * Advanced search for a company
- * Advanced search for a company
- */
-export const advancedCompanySearch = <ThrowOnError extends boolean = false>(
-  options?: Options<AdvancedCompanySearchData, ThrowOnError>,
-) => {
-  return (options?.client ?? client).get<
-    AdvancedCompanySearchResponses,
-    AdvancedCompanySearchErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/advanced-search/companies",
-    ...options,
-  });
-};
+  /**
+   * Search for a dissolved company
+   * Search for a dissolved company
+   */
+  public searchDissolvedCompanies<ThrowOnError extends boolean = false>(
+    options: Options<SearchDissolvedCompaniesData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      SearchDissolvedCompaniesResponses,
+      SearchDissolvedCompaniesErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/dissolved-search/companies",
+      ...options,
+    });
+  }
 
-/**
- * Company Officers
- * List of all company officers
- */
-export const listOfficers = <ThrowOnError extends boolean = false>(
-  options: Options<ListOfficersData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<ListOfficersResponses, ListOfficersErrors, ThrowOnError>({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/officers",
-    ...options,
-  });
-};
+  /**
+   * Search for a company
+   * Search for a company
+   */
+  public searchCompaniesAlphabetically<ThrowOnError extends boolean = false>(
+    options: Options<SearchCompaniesAlphabeticallyData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      SearchCompaniesAlphabeticallyResponses,
+      SearchCompaniesAlphabeticallyErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/alphabetical-search/companies",
+      ...options,
+    });
+  }
 
-/**
- * Get a company officer appointment
- * Get details of an individual company officer appointment
- */
-export const getOfficerAppointment = <ThrowOnError extends boolean = false>(
-  options: Options<GetOfficerAppointmentData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetOfficerAppointmentResponses,
-    GetOfficerAppointmentErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/appointments/{appointment_id}",
-    ...options,
-  });
-};
+  /**
+   * Advanced search for a company
+   * Advanced search for a company
+   */
+  public advancedCompanySearch<ThrowOnError extends boolean = false>(
+    options?: Options<AdvancedCompanySearchData, ThrowOnError>,
+  ) {
+    return (options?.client ?? this._client).get<
+      AdvancedCompanySearchResponses,
+      AdvancedCompanySearchErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/advanced-search/companies",
+      ...options,
+    });
+  }
 
-/**
- * Company registers
- * Get the company registers information
- */
-export const getRegisters = <ThrowOnError extends boolean = false>(
-  options: Options<GetRegistersData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<GetRegistersResponses, GetRegistersErrors, ThrowOnError>({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/registers",
-    ...options,
-  });
-};
+  /**
+   * Company Officers
+   * List of all company officers
+   */
+  public listOfficers<ThrowOnError extends boolean = false>(
+    options: Options<ListOfficersData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      ListOfficersResponses,
+      ListOfficersErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/officers",
+      ...options,
+    });
+  }
 
-/**
- * filingHistoryItem resource
- * Get the filing history item of a company
- */
-export const getFilingHistoryItem = <ThrowOnError extends boolean = false>(
-  options: Options<GetFilingHistoryItemData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetFilingHistoryItemResponses,
-    GetFilingHistoryItemErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/filing-history/{transaction_id}",
-    ...options,
-  });
-};
+  /**
+   * Get a company officer appointment
+   * Get details of an individual company officer appointment
+   */
+  public getOfficerAppointment<ThrowOnError extends boolean = false>(
+    options: Options<GetOfficerAppointmentData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetOfficerAppointmentResponses,
+      GetOfficerAppointmentErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/appointments/{appointment_id}",
+      ...options,
+    });
+  }
 
-/**
- * filingHistoryList resource
- * Get the filing history list of a company
- */
-export const listFilingHistory = <ThrowOnError extends boolean = false>(
-  options: Options<ListFilingHistoryData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    ListFilingHistoryResponses,
-    ListFilingHistoryErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/filing-history",
-    ...options,
-  });
-};
+  /**
+   * Company registers
+   * Get the company registers information
+   */
+  public getRegisters<ThrowOnError extends boolean = false>(
+    options: Options<GetRegistersData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetRegistersResponses,
+      GetRegistersErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/registers",
+      ...options,
+    });
+  }
 
-/**
- * Company exemptions information
- */
-export const getExemptions = <ThrowOnError extends boolean = false>(
-  options: Options<GetExemptionsData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<GetExemptionsResponses, GetExemptionsErrors, ThrowOnError>({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/exemptions",
-    ...options,
-  });
-};
+  /**
+   * filingHistoryItem resource
+   * Get the filing history item of a company
+   */
+  public getFilingHistoryItem<ThrowOnError extends boolean = false>(
+    options: Options<GetFilingHistoryItemData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetFilingHistoryItemResponses,
+      GetFilingHistoryItemErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/filing-history/{transaction_id}",
+      ...options,
+    });
+  }
 
-/**
- * Get natural officers disqualifications
- * Get a natural officer's disqualifications
- */
-export const getNaturalDisqualification = <ThrowOnError extends boolean = false>(
-  options: Options<GetNaturalDisqualificationData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetNaturalDisqualificationResponses,
-    GetNaturalDisqualificationErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/disqualified-officers/natural/{officer_id}",
-    ...options,
-  });
-};
+  /**
+   * filingHistoryList resource
+   * Get the filing history list of a company
+   */
+  public listFilingHistory<ThrowOnError extends boolean = false>(
+    options: Options<ListFilingHistoryData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      ListFilingHistoryResponses,
+      ListFilingHistoryErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/filing-history",
+      ...options,
+    });
+  }
 
-/**
- * Get a corporate officers disqualifications
- * Get a corporate officer's disqualifications
- */
-export const getCorporateDisqualification = <ThrowOnError extends boolean = false>(
-  options: Options<GetCorporateDisqualificationData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetCorporateDisqualificationResponses,
-    GetCorporateDisqualificationErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/disqualified-officers/corporate/{officer_id}",
-    ...options,
-  });
-};
+  /**
+   * Company exemptions information
+   */
+  public getExemptions<ThrowOnError extends boolean = false>(
+    options: Options<GetExemptionsData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetExemptionsResponses,
+      GetExemptionsErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/exemptions",
+      ...options,
+    });
+  }
 
-/**
- * Officer Appointment List
- * List of all officer appointments
- */
-export const listOfficerAppointments = <ThrowOnError extends boolean = false>(
-  options: Options<ListOfficerAppointmentsData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    ListOfficerAppointmentsResponses,
-    ListOfficerAppointmentsErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/officers/{officer_id}/appointments",
-    ...options,
-  });
-};
+  /**
+   * Get natural officers disqualifications
+   * Get a natural officer's disqualifications
+   */
+  public getNaturalDisqualification<ThrowOnError extends boolean = false>(
+    options: Options<GetNaturalDisqualificationData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetNaturalDisqualificationResponses,
+      GetNaturalDisqualificationErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/disqualified-officers/natural/{officer_id}",
+      ...options,
+    });
+  }
 
-/**
- * Charges
- * List of charges for a company.
- */
-export const listCharges = <ThrowOnError extends boolean = false>(
-  options: Options<ListChargesData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<ListChargesResponses, ListChargesErrors, ThrowOnError>({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/charges",
-    ...options,
-  });
-};
+  /**
+   * Get a corporate officers disqualifications
+   * Get a corporate officer's disqualifications
+   */
+  public getCorporateDisqualification<ThrowOnError extends boolean = false>(
+    options: Options<GetCorporateDisqualificationData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetCorporateDisqualificationResponses,
+      GetCorporateDisqualificationErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/disqualified-officers/corporate/{officer_id}",
+      ...options,
+    });
+  }
 
-/**
- * Individual charge information for company.
- */
-export const getCharge = <ThrowOnError extends boolean = false>(
-  options: Options<GetChargeData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<GetChargeResponses, GetChargeErrors, ThrowOnError>({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/charges/{charge_id}",
-    ...options,
-  });
-};
+  /**
+   * Officer Appointment List
+   * List of all officer appointments
+   */
+  public listOfficerAppointments<ThrowOnError extends boolean = false>(
+    options: Options<ListOfficerAppointmentsData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      ListOfficerAppointmentsResponses,
+      ListOfficerAppointmentsErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/officers/{officer_id}/appointments",
+      ...options,
+    });
+  }
 
-/**
- * Company insolvency information
- */
-export const getInsolvency = <ThrowOnError extends boolean = false>(
-  options: Options<GetInsolvencyData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<GetInsolvencyResponses, GetInsolvencyErrors, ThrowOnError>({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/insolvency",
-    ...options,
-  });
-};
+  /**
+   * Charges
+   * List of charges for a company.
+   */
+  public listCharges<ThrowOnError extends boolean = false>(
+    options: Options<ListChargesData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      ListChargesResponses,
+      ListChargesErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/charges",
+      ...options,
+    });
+  }
 
-/**
- * Company UK Establishments
- * List of uk-establishments companies
- */
-export const listUkEstablishments = <ThrowOnError extends boolean = false>(
-  options: Options<ListUkEstablishmentsData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    ListUkEstablishmentsResponses,
-    ListUkEstablishmentsErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/uk-establishments",
-    ...options,
-  });
-};
+  /**
+   * Individual charge information for company.
+   */
+  public getCharge<ThrowOnError extends boolean = false>(
+    options: Options<GetChargeData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<GetChargeResponses, GetChargeErrors, ThrowOnError>({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/charges/{charge_id}",
+      ...options,
+    });
+  }
 
-/**
- * List the company persons with significant control
- * List of all persons with significant control (not statements)
- */
-export const listPersonsWithSignificantControl = <ThrowOnError extends boolean = false>(
-  options: Options<ListPersonsWithSignificantControlData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    ListPersonsWithSignificantControlResponses,
-    ListPersonsWithSignificantControlErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control",
-    ...options,
-  });
-};
+  /**
+   * Company insolvency information
+   */
+  public getInsolvency<ThrowOnError extends boolean = false>(
+    options: Options<GetInsolvencyData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetInsolvencyResponses,
+      GetInsolvencyErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/insolvency",
+      ...options,
+    });
+  }
 
-/**
- * Get the individual person with significant control notification
- * Get details of the individual person with significant control notification
- */
-export const getIndividualPsc = <ThrowOnError extends boolean = false>(
-  options: Options<GetIndividualPscData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetIndividualPscResponses,
-    GetIndividualPscErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control/individual/{notification_id}",
-    ...options,
-  });
-};
+  /**
+   * Company UK Establishments
+   * List of uk-establishments companies
+   */
+  public listUkEstablishments<ThrowOnError extends boolean = false>(
+    options: Options<ListUkEstablishmentsData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      ListUkEstablishmentsResponses,
+      ListUkEstablishmentsErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/uk-establishments",
+      ...options,
+    });
+  }
 
-/**
- * Get the individual beneficial owner notification
- * Get details of an individual beneficial owner notification
- */
-export const getIndividualBeneficialOwner = <ThrowOnError extends boolean = false>(
-  options: Options<GetIndividualBeneficialOwnerData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetIndividualBeneficialOwnerResponses,
-    GetIndividualBeneficialOwnerErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control/individual-beneficial-owner/{notification_id}",
-    ...options,
-  });
-};
+  /**
+   * List the company persons with significant control
+   * List of all persons with significant control (not statements)
+   */
+  public listPersonsWithSignificantControl<ThrowOnError extends boolean = false>(
+    options: Options<ListPersonsWithSignificantControlData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      ListPersonsWithSignificantControlResponses,
+      ListPersonsWithSignificantControlErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control",
+      ...options,
+    });
+  }
 
-/**
- * Get the corporate entity with significant control notification
- * Get details of a corporate entity with significant control notification
- */
-export const getCorporateEntityPsc = <ThrowOnError extends boolean = false>(
-  options: Options<GetCorporateEntityPscData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetCorporateEntityPscResponses,
-    GetCorporateEntityPscErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control/corporate-entity/{notification_id}",
-    ...options,
-  });
-};
+  /**
+   * Get the individual person with significant control notification
+   * Get details of the individual person with significant control notification
+   */
+  public getIndividualPsc<ThrowOnError extends boolean = false>(
+    options: Options<GetIndividualPscData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetIndividualPscResponses,
+      GetIndividualPscErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control/individual/{notification_id}",
+      ...options,
+    });
+  }
 
-/**
- * Get the corporate entity beneficial owner notification
- * Get details of the corporate entity beneficial owner notification
- */
-export const getCorporateEntityBeneficialOwner = <ThrowOnError extends boolean = false>(
-  options: Options<GetCorporateEntityBeneficialOwnerData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetCorporateEntityBeneficialOwnerResponses,
-    GetCorporateEntityBeneficialOwnerErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control/corporate-entity-beneficial-owner/{notification_id}",
-    ...options,
-  });
-};
+  /**
+   * Get the individual beneficial owner notification
+   * Get details of an individual beneficial owner notification
+   */
+  public getIndividualBeneficialOwner<ThrowOnError extends boolean = false>(
+    options: Options<GetIndividualBeneficialOwnerData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetIndividualBeneficialOwnerResponses,
+      GetIndividualBeneficialOwnerErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control/individual-beneficial-owner/{notification_id}",
+      ...options,
+    });
+  }
 
-/**
- * Get the legal person with significant control notification
- * Get details of the legal person with significant control notification
- */
-export const getLegalPersonPsc = <ThrowOnError extends boolean = false>(
-  options: Options<GetLegalPersonPscData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetLegalPersonPscResponses,
-    GetLegalPersonPscErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control/legal-person/{notification_id}",
-    ...options,
-  });
-};
+  /**
+   * Get the corporate entity with significant control notification
+   * Get details of a corporate entity with significant control notification
+   */
+  public getCorporateEntityPsc<ThrowOnError extends boolean = false>(
+    options: Options<GetCorporateEntityPscData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetCorporateEntityPscResponses,
+      GetCorporateEntityPscErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control/corporate-entity/{notification_id}",
+      ...options,
+    });
+  }
 
-/**
- * Get the legal person beneficial owner notification
- * Get details of the legal person beneficial owner notification
- */
-export const getLegalPersonBeneficialOwner = <ThrowOnError extends boolean = false>(
-  options: Options<GetLegalPersonBeneficialOwnerData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetLegalPersonBeneficialOwnerResponses,
-    GetLegalPersonBeneficialOwnerErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control/legal-person-beneficial-owner/{notification_id}",
-    ...options,
-  });
-};
+  /**
+   * Get the corporate entity beneficial owner notification
+   * Get details of the corporate entity beneficial owner notification
+   */
+  public getCorporateEntityBeneficialOwner<ThrowOnError extends boolean = false>(
+    options: Options<GetCorporateEntityBeneficialOwnerData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetCorporateEntityBeneficialOwnerResponses,
+      GetCorporateEntityBeneficialOwnerErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control/corporate-entity-beneficial-owner/{notification_id}",
+      ...options,
+    });
+  }
 
-/**
- * List the company persons with significant control statements
- * List of all persons with significant control statements
- */
-export const listPscStatements = <ThrowOnError extends boolean = false>(
-  options: Options<ListPscStatementsData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    ListPscStatementsResponses,
-    ListPscStatementsErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control-statements",
-    ...options,
-  });
-};
+  /**
+   * Get the legal person with significant control notification
+   * Get details of the legal person with significant control notification
+   */
+  public getLegalPersonPsc<ThrowOnError extends boolean = false>(
+    options: Options<GetLegalPersonPscData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetLegalPersonPscResponses,
+      GetLegalPersonPscErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control/legal-person/{notification_id}",
+      ...options,
+    });
+  }
 
-/**
- * Get the person with significant control statement
- * Get details of a person with significant control statement
- */
-export const getPscStatement = <ThrowOnError extends boolean = false>(
-  options: Options<GetPscStatementData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetPscStatementResponses,
-    GetPscStatementErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control-statements/{statement_id}",
-    ...options,
-  });
-};
+  /**
+   * Get the legal person beneficial owner notification
+   * Get details of the legal person beneficial owner notification
+   */
+  public getLegalPersonBeneficialOwner<ThrowOnError extends boolean = false>(
+    options: Options<GetLegalPersonBeneficialOwnerData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetLegalPersonBeneficialOwnerResponses,
+      GetLegalPersonBeneficialOwnerErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control/legal-person-beneficial-owner/{notification_id}",
+      ...options,
+    });
+  }
 
-/**
- * Get the super secure person with significant control
- * Get details of a super secure person with significant control
- */
-export const getSuperSecurePsc = <ThrowOnError extends boolean = false>(
-  options: Options<GetSuperSecurePscData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetSuperSecurePscResponses,
-    GetSuperSecurePscErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control/super-secure/{super_secure_id}",
-    ...options,
-  });
-};
+  /**
+   * List the company persons with significant control statements
+   * List of all persons with significant control statements
+   */
+  public listPscStatements<ThrowOnError extends boolean = false>(
+    options: Options<ListPscStatementsData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      ListPscStatementsResponses,
+      ListPscStatementsErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control-statements",
+      ...options,
+    });
+  }
 
-/**
- * Get the super secure beneficial owner
- * Get details of a super secure beneficial owner
- */
-export const getSuperSecureBeneficialOwner = <ThrowOnError extends boolean = false>(
-  options: Options<GetSuperSecureBeneficialOwnerData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetSuperSecureBeneficialOwnerResponses,
-    GetSuperSecureBeneficialOwnerErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control/super-secure-beneficial-owner/{super_secure_id}",
-    ...options,
-  });
-};
+  /**
+   * Get the person with significant control statement
+   * Get details of a person with significant control statement
+   */
+  public getPscStatement<ThrowOnError extends boolean = false>(
+    options: Options<GetPscStatementData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetPscStatementResponses,
+      GetPscStatementErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control-statements/{statement_id}",
+      ...options,
+    });
+  }
 
-/**
- * Persons with significant control Notification List
- * List of all notifications of a specific person with significant control
- */
-export const listPscNotifications = <ThrowOnError extends boolean = false>(
-  options: Options<ListPscNotificationsData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    ListPscNotificationsResponses,
-    ListPscNotificationsErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/persons-with-significant-control/{psc_id}/notifications",
-    ...options,
-  });
-};
+  /**
+   * Get the super secure person with significant control
+   * Get details of a super secure person with significant control
+   */
+  public getSuperSecurePsc<ThrowOnError extends boolean = false>(
+    options: Options<GetSuperSecurePscData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetSuperSecurePscResponses,
+      GetSuperSecurePscErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control/super-secure/{super_secure_id}",
+      ...options,
+    });
+  }
 
-/**
- * Registered Office Address
- * Get the current address of a company
- */
-export const getRegisteredOfficeAddress = <ThrowOnError extends boolean = false>(
-  options: Options<GetRegisteredOfficeAddressData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetRegisteredOfficeAddressResponses,
-    GetRegisteredOfficeAddressErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}/registered-office-address",
-    ...options,
-  });
-};
+  /**
+   * Get the super secure beneficial owner
+   * Get details of a super secure beneficial owner
+   */
+  public getSuperSecureBeneficialOwner<ThrowOnError extends boolean = false>(
+    options: Options<GetSuperSecureBeneficialOwnerData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetSuperSecureBeneficialOwnerResponses,
+      GetSuperSecureBeneficialOwnerErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control/super-secure-beneficial-owner/{super_secure_id}",
+      ...options,
+    });
+  }
 
-/**
- * Company profile
- * Get the basic company information
- */
-export const getCompanyProfile = <ThrowOnError extends boolean = false>(
-  options: Options<GetCompanyProfileData, ThrowOnError>,
-) => {
-  return (options.client ?? client).get<
-    GetCompanyProfileResponses,
-    GetCompanyProfileErrors,
-    ThrowOnError
-  >({
-    security: [
-      {
-        scheme: "basic",
-        type: "http",
-      },
-    ],
-    url: "/company/{company_number}",
-    ...options,
-  });
-};
+  /**
+   * Persons with significant control Notification List
+   * List of all notifications of a specific person with significant control
+   */
+  public listPscNotifications<ThrowOnError extends boolean = false>(
+    options: Options<ListPscNotificationsData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      ListPscNotificationsResponses,
+      ListPscNotificationsErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/persons-with-significant-control/{psc_id}/notifications",
+      ...options,
+    });
+  }
+
+  /**
+   * Registered Office Address
+   * Get the current address of a company
+   */
+  public getRegisteredOfficeAddress<ThrowOnError extends boolean = false>(
+    options: Options<GetRegisteredOfficeAddressData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetRegisteredOfficeAddressResponses,
+      GetRegisteredOfficeAddressErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}/registered-office-address",
+      ...options,
+    });
+  }
+
+  /**
+   * Company profile
+   * Get the basic company information
+   */
+  public getCompanyProfile<ThrowOnError extends boolean = false>(
+    options: Options<GetCompanyProfileData, ThrowOnError>,
+  ) {
+    return (options.client ?? this._client).get<
+      GetCompanyProfileResponses,
+      GetCompanyProfileErrors,
+      ThrowOnError
+    >({
+      security: [
+        {
+          scheme: "basic",
+          type: "http",
+        },
+      ],
+      url: "/company/{company_number}",
+      ...options,
+    });
+  }
+}

@@ -1,23 +1,11 @@
 import { expect, test } from "vite-plus/test";
-import {
-  getCorporateEntityPsc,
-  getCorporateEntityBeneficialOwner,
-  getIndividualPsc,
-  getIndividualBeneficialOwner,
-  getLegalPersonBeneficialOwner,
-  getLegalPersonPsc,
-  getPscStatement,
-  getSuperSecureBeneficialOwner,
-  getSuperSecurePsc,
-  listPersonsWithSignificantControl as listPsc,
-  listPscNotifications,
-  listPscStatements,
-} from "../src/index.ts";
-import { describeLive, expectData, fixtures, idFromLink } from "./fixtures.ts";
+import { ch, describeLive, expectData, fixtures, idFromLink } from "./fixtures.ts";
 
 /** Lists a company's PSCs and returns the notification id of the first PSC of `kind`. */
 async function firstPscIdOfKind(companyNumber: string, kind: string): Promise<string> {
-  const data = expectData(await listPsc({ path: { company_number: companyNumber } }));
+  const data = expectData(
+    await ch.listPersonsWithSignificantControl({ path: { company_number: companyNumber } }),
+  );
   const match = data.items?.find((i) => i.kind === kind);
   expect(match, `no ${kind} PSC on ${companyNumber}`).toBeDefined();
   return idFromLink(match?.links?.self);
@@ -30,7 +18,7 @@ describeLive("persons with significant control endpoints", () => {
       "individual-person-with-significant-control",
     );
     const psc = expectData(
-      await getIndividualPsc({
+      await ch.getIndividualPsc({
         path: { company_number: fixtures.individualPscCompany, notification_id: id },
       }),
     );
@@ -43,7 +31,7 @@ describeLive("persons with significant control endpoints", () => {
       "corporate-entity-person-with-significant-control",
     );
     const psc = expectData(
-      await getCorporateEntityPsc({
+      await ch.getCorporateEntityPsc({
         path: { company_number: fixtures.corporatePscCompany, notification_id: id },
       }),
     );
@@ -56,7 +44,7 @@ describeLive("persons with significant control endpoints", () => {
       "legal-person-person-with-significant-control",
     );
     const psc = expectData(
-      await getLegalPersonPsc({
+      await ch.getLegalPersonPsc({
         path: { company_number: fixtures.legalPersonPscCompany, notification_id: id },
       }),
     );
@@ -66,7 +54,7 @@ describeLive("persons with significant control endpoints", () => {
   test("individual beneficial owner", async () => {
     const id = await firstPscIdOfKind(fixtures.overseasEntity, "individual-beneficial-owner");
     const owner = expectData(
-      await getIndividualBeneficialOwner({
+      await ch.getIndividualBeneficialOwner({
         path: { company_number: fixtures.overseasEntity, notification_id: id },
       }),
     );
@@ -79,7 +67,7 @@ describeLive("persons with significant control endpoints", () => {
       "corporate-entity-beneficial-owner",
     );
     const owner = expectData(
-      await getCorporateEntityBeneficialOwner({
+      await ch.getCorporateEntityBeneficialOwner({
         path: { company_number: fixtures.corporateBoEntity, notification_id: id },
       }),
     );
@@ -90,7 +78,7 @@ describeLive("persons with significant control endpoints", () => {
     // No overseas entity with a legal-person beneficial owner has been found
     // on the register (OE000001-OE000040 scanned on 2026-07-13), so this
     // documents the error contract until a 200 fixture exists.
-    const { response } = await getLegalPersonBeneficialOwner({
+    const { response } = await ch.getLegalPersonBeneficialOwner({
       path: { company_number: fixtures.overseasEntity, notification_id: "unknown" },
     });
     expect(response.status).toBe(404);
@@ -98,13 +86,13 @@ describeLive("persons with significant control endpoints", () => {
 
   test("PSC statements list and statement", async () => {
     const statements = expectData(
-      await listPscStatements({ path: { company_number: fixtures.overseasEntity } }),
+      await ch.listPscStatements({ path: { company_number: fixtures.overseasEntity } }),
     );
     const statementId = idFromLink(statements.items?.[0]?.links?.self);
     expect(statementId).not.toBe("");
 
     const statement = expectData(
-      await getPscStatement({
+      await ch.getPscStatement({
         path: { company_number: fixtures.overseasEntity, statement_id: statementId },
       }),
     );
@@ -114,14 +102,14 @@ describeLive("persons with significant control endpoints", () => {
   test("super secure person returns 404 for an unknown id", async () => {
     // Super-secure PSCs are shielded from public view by design, so no 200
     // fixture can exist; this documents the error contract.
-    const { response } = await getSuperSecurePsc({
+    const { response } = await ch.getSuperSecurePsc({
       path: { company_number: fixtures.company, super_secure_id: "unknown" },
     });
     expect(response.status).toBe(404);
   });
 
   test("super secure beneficial owner returns 404 for an unknown id", async () => {
-    const { response } = await getSuperSecureBeneficialOwner({
+    const { response } = await ch.getSuperSecureBeneficialOwner({
       path: { company_number: fixtures.overseasEntity, super_secure_id: "unknown" },
     });
     expect(response.status).toBe(404);
@@ -135,7 +123,7 @@ describeLive("persons with significant control endpoints", () => {
       fixtures.corporatePscCompany,
       "corporate-entity-person-with-significant-control",
     );
-    const { response } = await listPscNotifications({
+    const { response } = await ch.listPscNotifications({
       path: { company_number: fixtures.corporatePscCompany, psc_id: id },
     });
     expect(response.status).toBe(404);

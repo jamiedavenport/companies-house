@@ -1,18 +1,10 @@
 import { expect, test } from "vite-plus/test";
-import {
-  getOfficerAppointment,
-  getCorporateDisqualification,
-  getNaturalDisqualification,
-  listOfficers,
-  listOfficerAppointments,
-  searchDisqualifiedOfficers,
-} from "../src/index.ts";
-import { describeLive, expectData, fixtures, idFromLink } from "./fixtures.ts";
+import { ch, describeLive, expectData, fixtures, idFromLink } from "./fixtures.ts";
 
 describeLive("officer endpoints", () => {
   test("officers list, appointment, and officer appointment list", async () => {
     const officers = expectData(
-      await listOfficers({
+      await ch.listOfficers({
         path: { company_number: fixtures.company },
         query: { items_per_page: 1 },
       }),
@@ -24,7 +16,7 @@ describeLive("officer endpoints", () => {
     const appointmentId = idFromLink(officer?.links?.self);
     expect(appointmentId).not.toBe("");
     const appointment = expectData(
-      await getOfficerAppointment({
+      await ch.getOfficerAppointment({
         path: { company_number: fixtures.company, appointment_id: appointmentId },
       }),
     );
@@ -34,33 +26,35 @@ describeLive("officer endpoints", () => {
     const officerId = officer?.links?.officer?.appointments?.split("/")[2];
     expect(officerId).toBeTypeOf("string");
     const appointments = expectData(
-      await listOfficerAppointments({ path: { officer_id: officerId! } }),
+      await ch.listOfficerAppointments({ path: { officer_id: officerId! } }),
     );
     expect(appointments.items?.length).toBeGreaterThan(0);
   });
 
   test("natural disqualified officer", async () => {
     const results = expectData(
-      await searchDisqualifiedOfficers({ query: { q: "smith", items_per_page: 50 } }),
+      await ch.searchDisqualifiedOfficers({ query: { q: "smith", items_per_page: 50 } }),
     );
     const natural = results.items?.find((i) => i.links?.self?.includes("/natural/"));
     expect(natural, "no natural disqualified officer in search results").toBeDefined();
 
     const officer = expectData(
-      await getNaturalDisqualification({ path: { officer_id: idFromLink(natural?.links?.self) } }),
+      await ch.getNaturalDisqualification({
+        path: { officer_id: idFromLink(natural?.links?.self) },
+      }),
     );
     expect(officer.disqualifications?.length).toBeGreaterThan(0);
   });
 
   test("corporate disqualified officer", async () => {
     const results = expectData(
-      await searchDisqualifiedOfficers({ query: { q: "limited", items_per_page: 50 } }),
+      await ch.searchDisqualifiedOfficers({ query: { q: "limited", items_per_page: 50 } }),
     );
     const corporate = results.items?.find((i) => i.links?.self?.includes("/corporate/"));
     expect(corporate, "no corporate disqualified officer in search results").toBeDefined();
 
     const officer = expectData(
-      await getCorporateDisqualification({
+      await ch.getCorporateDisqualification({
         path: { officer_id: idFromLink(corporate?.links?.self) },
       }),
     );

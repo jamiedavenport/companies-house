@@ -2,6 +2,23 @@
 
 A _modern_ Typescript SDK for the Companies House API.
 
+## Usage
+
+```ts
+import { createCompaniesHouseClient } from "@jxdltd/companies-house";
+
+const ch = createCompaniesHouseClient({ apiKey: process.env.CH_API_KEY! });
+
+const { data } = await ch.getCompanyProfile({
+  path: { company_number: "00445790" },
+});
+```
+
+- Fully typed request parameters and responses for all 34 endpoints of the Public Data API.
+- Rate-limit aware: 429 responses wait for the `x-ratelimit-reset` window and retry automatically; transient 5xx responses and network errors retry with exponential backoff. Tune or disable via the `retry` option.
+- Isolated instances: create as many clients as you need with different keys; nothing is shared or global.
+- Verified daily: a scheduled integration suite runs every endpoint against the live API, catching upstream drift before you do.
+
 ## Prior Art
 
 - [@companieshouse/api-sdk-node](https://github.com/companieshouse/api-sdk-node) - The official Node.js SDK, written in TypeScript and actively maintained. It is primarily built for Companies House's own internal web services (ERIC headers, auth propagation), uses an Either-style result pattern, and its docs and packaging are geared towards internal use rather than third-party developers.

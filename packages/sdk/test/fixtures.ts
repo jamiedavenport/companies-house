@@ -1,4 +1,8 @@
 import { describe, expect } from "vite-plus/test";
+import { createCompaniesHouseClient } from "../src/index.ts";
+
+/** Shared SDK instance for live tests; unusable when CH_API_KEY is absent. */
+export const ch = createCompaniesHouseClient({ apiKey: process.env.CH_API_KEY ?? "" });
 
 // Live fixtures verified against the API on 2026-07-13. The scheduled cron
 // run re-verifies them; a failure can mean upstream data changed rather than
