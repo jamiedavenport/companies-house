@@ -26,12 +26,7 @@ export type RegisteredOfficeAddress = {
    * The type of resource.
    */
   kind?: "registered-office-address";
-  /**
-   * Links to the related resources
-   */
-  readonly links?: {
-    [key: string]: unknown;
-  };
+  links?: SelfLink;
   /**
    * The property name or number.
    */
@@ -118,18 +113,8 @@ export type NextAccounts = {
  * accountsInformation
  */
 export type AccountsInformation = {
-  /**
-   * The Accounting Reference Date (ARD) of the company.
-   */
-  accounting_reference_date: {
-    [key: string]: unknown;
-  };
-  /**
-   * The last company accounts filed.
-   */
-  last_accounts?: {
-    [key: string]: unknown;
-  };
+  accounting_reference_date: AccountingReferenceDate;
+  last_accounts?: LastAccounts;
   /**
    * Deprecated. Please use accounts.next_accounts.due_on
    */
@@ -142,12 +127,7 @@ export type AccountsInformation = {
    * Deprecated. Please use accounts.next_accounts.overdue
    */
   overdue: boolean;
-  /**
-   * The next company accounts filed.
-   */
-  next_accounts?: {
-    [key: string]: unknown;
-  };
+  next_accounts?: NextAccounts;
 };
 
 /**
@@ -250,24 +230,9 @@ export type FileWithin = {
  * accountInformation
  */
 export type AccountInformation = {
-  /**
-   * Date account period starts under parent law.
-   */
-  "account_period_from:"?: {
-    [key: string]: unknown;
-  };
-  /**
-   * Date account period ends under parent law.
-   */
-  account_period_to?: {
-    [key: string]: unknown;
-  };
-  /**
-   * Time allowed from period end for disclosure of accounts under parent law.
-   */
-  must_file_within?: {
-    [key: string]: unknown;
-  };
+  "account_period_from:"?: AccountPeriodFrom;
+  account_period_to?: AccountPeriodTo;
+  must_file_within?: FileWithin;
 };
 
 /**
@@ -295,12 +260,7 @@ export type AccountsRequired = {
  * foreignCompanyDetails
  */
 export type ForeignCompanyDetails = {
-  /**
-   * Company origin informations
-   */
-  originating_registry?: {
-    [key: string]: unknown;
-  };
+  originating_registry?: OriginatingRegistry;
   /**
    * Registration number in company of incorporation.
    */
@@ -317,22 +277,12 @@ export type ForeignCompanyDetails = {
    * Is it a financial or credit institution.
    */
   is_a_credit_finance_institution?: boolean;
-  /**
-   * Foreign company account information.
-   */
-  accounts?: {
-    [key: string]: unknown;
-  };
+  accounts?: AccountInformation;
   /**
    * Type of business undertaken by the company.
    */
   business_activity?: string;
-  /**
-   * Accounts requirement.
-   */
-  accounting_requirement?: {
-    [key: string]: unknown;
-  };
+  accounting_requirement?: AccountsRequired;
 };
 
 /**
@@ -531,28 +481,13 @@ export type LinksType = {
  * companyProfile
  */
 export type CompanyProfile = {
-  /**
-   * Company accounts information.
-   */
-  accounts?: {
-    [key: string]: unknown;
-  };
-  /**
-   * Annual return information. This member is only returned if a confirmation statement has not be filed.
-   */
-  annual_return?: {
-    [key: string]: unknown;
-  };
+  accounts?: AccountsInformation;
+  annual_return?: AnnualReturnInformation;
   /**
    * Flag indicating whether this company can file.
    */
   can_file: boolean;
-  /**
-   * Confirmation statement information (N.B. refers to the Annual Statement where type is registered-overseas-entity)
-   */
-  confirmation_statement?: {
-    [key: string]: unknown;
-  };
+  confirmation_statement?: ConfirmationOfStatementInformation;
   /**
    * The name of the company.
    */
@@ -613,28 +548,13 @@ export type CompanyProfile = {
    * The number given by an external registration body.
    */
   external_registration_number?: string;
-  /**
-   * Foreign company details.
-   */
-  foreign_company_details?: {
-    [key: string]: unknown;
-  };
+  foreign_company_details?: ForeignCompanyDetails;
   /**
    * The date of last full members list update.
    */
   last_full_members_list_date?: string;
-  /**
-   * The address of the company's registered office.
-   */
-  registered_office_address?: {
-    [key: string]: unknown;
-  };
-  /**
-   * The correspondence address of a Registered overseas entity
-   */
-  service_address?: {
-    [key: string]: unknown;
-  };
+  registered_office_address?: RegisteredOfficeAddress2;
+  service_address?: ServiceAddress;
   /**
    * The total count of super secure managing officers for a `registered-overseas-entity`.
    */
@@ -732,12 +652,7 @@ export type CompanyProfile = {
    * UK branch of a foreign company.
    */
   branch_company_details?: unknown;
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: LinksType;
 };
 
 export type CommonSearch = {
@@ -796,12 +711,7 @@ export type CommonSearchItems = {
    * A single line address. This will be the address that matched within the indexed document or the primary address otherwise (as returned by the `address` member).
    */
   address_snippet?: string;
-  /**
-   * The URL of the search result.
-   */
-  links?: {
-    [key: string]: unknown;
-  };
+  links?: LinksModel;
   /**
    * The result description.
    */
@@ -810,12 +720,7 @@ export type CommonSearchItems = {
    * Summary information for the result showing additional details that have matched.
    */
   snippet?: string;
-  /**
-   * A list of members and arrays of character offset defining substrings that matched the search terms.
-   */
-  matches?: {
-    [key: string]: unknown;
-  };
+  matches?: MatchesModel;
 };
 
 /**
@@ -898,12 +803,7 @@ export type SearchItems = CommonSearchItems & {
     | "registered"
     | "removed"
   >;
-  /**
-   * The address of the company's registered office.
-   */
-  address: {
-    [key: string]: unknown;
-  };
+  address: RegisteredOfficeAddress3;
   /**
    * The title of the search result.
    */
@@ -912,12 +812,7 @@ export type SearchItems = CommonSearchItems & {
    * A single line address. This will be the address that matched within the indexed document or the primary address otherwise (as returned by the `address` member).
    */
   address_snippet: string;
-  /**
-   * The URL of the search result.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: LinksModel;
 };
 
 /**
@@ -1019,12 +914,7 @@ export type CompanySearchItems = CommonSearchItems & {
     | "insolvency-proceedings"
     | "registered"
     | "removed";
-  /**
-   * The address of the company's registered office.
-   */
-  address: {
-    [key: string]: unknown;
-  };
+  address: RegisteredOfficeAddress3;
   /**
    * The title of the search result.
    */
@@ -1033,12 +923,7 @@ export type CompanySearchItems = CommonSearchItems & {
    * A single line address. This will be the address that matched within the indexed document or the primary address otherwise (as returned by the `address` member).
    */
   address_snippet: string;
-  /**
-   * The URL of the search result.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: LinksModel;
 };
 
 /**
@@ -1131,12 +1016,7 @@ export type OfficerSearchItems = CommonSearchItems & {
    * An array of enumeration types that make up the search description. See search_descriptions_raw.yaml in api-enumerations.
    */
   description_identifiers?: Array<"appointment-count" | "born-on">;
-  /**
-   * The service address of the officer.
-   */
-  address: {
-    [key: string]: unknown;
-  };
+  address: OfficerAddress;
   /**
    * The result description.
    */
@@ -1215,12 +1095,7 @@ export type DisqualifiedOfficerSearchItems = CommonSearchItems & {
    * An array of enumeration types that make up the search description. See search_descriptions_raw.yaml in api-enumerations.
    */
   description_identifiers?: Array<"born-on">;
-  /**
-   * The address of the disqualified officer as provided by the disqualifying authority.
-   */
-  address: {
-    [key: string]: unknown;
-  };
+  address: DisqualifiedOfficerAddress;
   /**
    * The title of the search result.
    */
@@ -1641,12 +1516,7 @@ export type ItemLinkTypes = {
    * Link to this individual company officer appointment resource.
    */
   self: string;
-  /**
-   * Links to other officer resources associated with this officer list item.
-   */
-  officer: {
-    [key: string]: unknown;
-  };
+  officer: OfficerLinkTypes;
 };
 
 /**
@@ -1774,38 +1644,18 @@ export type IdentityVerificationDetails = {
  * officerSummary
  */
 export type OfficerSummary = {
-  /**
-   * The correspondence address of the officer.
-   */
-  address?: {
-    [key: string]: unknown;
-  };
+  address?: Address;
   /**
    * The date on which the officer was appointed. For the officer roles of `corporate-managing-officer` and `managing-officer` this is the date on which Companies House was notified about the officer.
    */
   appointed_on?: string;
-  /**
-   * The contact at the `corporate-managing-officer` of a `registered-overseas-entity`.
-   */
-  contact_details?: {
-    [key: string]: unknown;
-  };
+  contact_details?: ContactDetails;
   /**
    * The officer's country of residence.
    */
   country_of_residence?: string;
-  /**
-   * Details of director date of birth.
-   */
-  date_of_birth?: {
-    [key: string]: unknown;
-  };
-  /**
-   * Links to other resources associated with this officer list item.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  date_of_birth?: DateOfBirth;
+  links: ItemLinkTypes;
   /**
    * Corporate or natural officer name.
    */
@@ -1853,12 +1703,7 @@ export type OfficerSummary = {
    * Unique person identifier as displayed in bulk products 195, 198, 208, 209 and 216.
    */
   person_number?: string;
-  /**
-   * The principal/registered office address of a `corporate-managing-officer` of a `registered-overseas-entity`.
-   */
-  principal_office_address?: {
-    [key: string]: unknown;
-  };
+  principal_office_address?: PrincipalOfficeAddress;
   /**
    * The date the officer was resigned. For the officer roles of `corporate-managing-officer` and `managing-officer` this is the date on which Companies House was notified about the officers cessation.
    */
@@ -1871,18 +1716,8 @@ export type OfficerSummary = {
    * Former names for the officer.
    */
   former_names?: Array<FormerNames>;
-  /**
-   * Only one from `eea`, `non-eea`, `uk-limited-company`, `other-corporate-body-or-firm` or `registered-overseas-entity-corporate-managing-officer` can be supplied, not multiples of them.
-   */
-  identification?: {
-    [key: string]: unknown;
-  };
-  /**
-   * Information relating to the identity verification of the officer
-   */
-  identity_verification_details?: {
-    [key: string]: unknown;
-  };
+  identification?: CorporateIdent;
+  identity_verification_details?: IdentityVerificationDetails;
   /**
    * The date the officer was appointed before. Only present when the <code>is_pre_1992_appointment</code> attribute is <code>true</code>.
    */
@@ -1928,12 +1763,7 @@ export type OfficerList = {
    */
   items_per_page: number;
   kind: "officer-list";
-  /**
-   * Links to other resources associated with this officer list resource.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: LinkTypes;
   /**
    * The number of resigned officers in this result set.
    */
@@ -2030,12 +1860,7 @@ export type RegisteredItems = {
     | "registered-office"
     | "single-alternative-inspection-location"
     | "unspecified-location";
-  /**
-   * A set of URLs related to the resource.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: LinksItems;
 };
 
 /**
@@ -2057,12 +1882,7 @@ export type RegisterListDirectors = {
    */
   register_type: "directors";
   items: Array<RegisteredItems>;
-  /**
-   * A set of URLs related to the resource.
-   */
-  links?: {
-    [key: string]: unknown;
-  };
+  links?: LinksDirectorsRegister;
 };
 
 /**
@@ -2084,12 +1904,7 @@ export type RegisterListSecretaries = {
    */
   register_type: "secretaries";
   items: Array<RegisteredItems>;
-  /**
-   * A set of URLs related to the resource.
-   */
-  links?: {
-    [key: string]: unknown;
-  };
+  links?: LinksSecretaryRegister;
 };
 
 /**
@@ -2111,12 +1926,7 @@ export type RegisterListPersonsWithSignificantControl = {
    */
   register_type: "persons-with-significant-control";
   items: Array<RegisteredItems>;
-  /**
-   * A set of URLs related to the resource.
-   */
-  links?: {
-    [key: string]: unknown;
-  };
+  links?: LinksPersonsWithSignificantControlRegister;
 };
 
 /**
@@ -2138,12 +1948,7 @@ export type RegisterListUsualResidentialAddress = {
    */
   register_type: "usual-residential-address";
   items: Array<RegisteredItems>;
-  /**
-   * A set of URLs related to the resource.
-   */
-  links?: {
-    [key: string]: unknown;
-  };
+  links?: LinksListUsualResidentialAddress;
 };
 
 /**
@@ -2165,12 +1970,7 @@ export type RegisterListLlpUsualResidentialAddress = {
    */
   register_type: "llp-usual-residential-address";
   items: Array<RegisteredItems>;
-  /**
-   * A set of URLs related to the resource.
-   */
-  links?: {
-    [key: string]: unknown;
-  };
+  links?: LinksListLlpUsualResidentialAddress;
 };
 
 /**
@@ -2192,12 +1992,7 @@ export type RegisterListMembers = {
    */
   register_type: "members";
   items: Array<RegisteredItems>;
-  /**
-   * A set of URLs related to the resource.
-   */
-  links?: {
-    [key: string]: unknown;
-  };
+  links?: LinksListMembers;
 };
 
 /**
@@ -2219,12 +2014,7 @@ export type RegisterListLlpMembers = {
    */
   register_type: "llp_members";
   items: Array<RegisteredItems>;
-  /**
-   * A set of URLs related to the resource.
-   */
-  links?: {
-    [key: string]: unknown;
-  };
+  links?: LinksListLlpMembers;
 };
 
 /**
@@ -2266,12 +2056,7 @@ export type Registers = {
  * companyRegister
  */
 export type CompanyRegister = {
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: LinksType2;
   /**
    * The number of the company.
    */
@@ -2414,12 +2199,7 @@ export type FilingHistoryItem = {
    * For enumeration descriptions see `description` section in the [enumeration mappings](https://github.com/companieshouse/api-enumerations/blob/master/filing_history_descriptions.yml) file.
    */
   description: string;
-  /**
-   * Links to other resources associated with this filing history item.
-   */
-  links?: {
-    [key: string]: unknown;
-  };
+  links?: FilingHistoryItemLinks;
   /**
    * Number of pages within the PDF document (links.document_metadata)
    */
@@ -2690,12 +2470,7 @@ export type Disqualification = {
    * The case identifier of the disqualification.
    */
   case_identifier?: string;
-  /**
-   * The address of the disqualified officer as provided by the disqualifying authority.
-   */
-  address: {
-    [key: string]: unknown;
-  };
+  address: Address2;
   /**
    * The companies in which the misconduct took place.
    */
@@ -2729,12 +2504,7 @@ export type Disqualification = {
    * The latest variation made to the disqualification.
    */
   last_variation?: Array<LastVariation>;
-  /**
-   * The reason for the disqualification.
-   */
-  reason: {
-    [key: string]: unknown;
-  };
+  reason: Reason;
 };
 
 /**
@@ -2796,12 +2566,7 @@ export type NaturalDisqualification = {
    * The title of the disqualified officer.
    */
   title?: string;
-  /**
-   * Links to other resources associated with this officer disqualification resource.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: Links;
   /**
    * The officer's disqualifications.
    */
@@ -2837,12 +2602,7 @@ export type CorporateDisqualification = {
    * The name of the disqualified officer.
    */
   name: string;
-  /**
-   * Links to other resources associated with this officer disqualification resource.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: Links;
   /**
    * The officer's disqualifications.
    */
@@ -2971,12 +2731,7 @@ export type NameElements = {
  * officerAppointmentSummary
  */
 export type OfficerAppointmentSummary = {
-  /**
-   * The correspondence address of the officer.
-   */
-  address?: {
-    [key: string]: unknown;
-  };
+  address?: Address3;
   /**
    * The date the officer was appointed before. Only present when the `is_pre_1992_appointment` attribute is `true`.
    */
@@ -2985,18 +2740,8 @@ export type OfficerAppointmentSummary = {
    * The date on which the officer was appointed. For the officer roles of `corporate-managing-officer` and `managing-officer` this is the date on which Companies House was notified about the officer.
    */
   appointed_on?: string;
-  /**
-   * The company information of the appointment.
-   */
-  appointed_to: {
-    [key: string]: unknown;
-  };
-  /**
-   * The contact at the `corporate-managing-officer` of a `registered-overseas-entity`.
-   */
-  contact_details?: {
-    [key: string]: unknown;
-  };
+  appointed_to: AppointedTo;
+  contact_details?: ContactDetails;
   /**
    * The full name of the officer.
    */
@@ -3009,34 +2754,14 @@ export type OfficerAppointmentSummary = {
    * Former names for the officer, if there are any.
    */
   former_names?: Array<FormerNames>;
-  /**
-   * Only one from `eea`, `non-eea`, `uk-limited-company`, `other-corporate-body-or-firm` or `registered-overseas-entity-corporate-managing-officer` can be supplied, not multiples of them.
-   */
-  identification?: {
-    [key: string]: unknown;
-  };
-  /**
-   * Information relating to the identity verification of the officer
-   */
-  identity_verification_details?: {
-    [key: string]: unknown;
-  };
+  identification?: CorporateIdent;
+  identity_verification_details?: IdentityVerificationDetails;
   /**
    * Indicator representing if the officer was appointed before their appointment date.
    */
   is_pre_1992_appointment?: boolean;
-  /**
-   * Links to other resources associated with this officer appointment item.
-   */
-  links: {
-    [key: string]: unknown;
-  };
-  /**
-   * A document encapsulating the separate elements of a natural officer's name.
-   */
-  name_elements?: {
-    [key: string]: unknown;
-  };
+  links: AppointmentLinkTypes;
+  name_elements?: NameElements;
   /**
    * The officer's nationality.
    */
@@ -3069,12 +2794,7 @@ export type OfficerAppointmentSummary = {
     | "nominee-secretary"
     | "receiver-and-manager"
     | "secretary";
-  /**
-   * The principal/registered office address of a `corporate-managing-officer` of a `registered-overseas-entity`.
-   */
-  principal_office_address?: {
-    [key: string]: unknown;
-  };
+  principal_office_address?: Address3;
   /**
    * The date the officer was resigned. For the officer roles of `corporate-managing-officer` and `managing-officer` this is the date on which Companies House was notified about the officers cessation.
    */
@@ -3099,12 +2819,7 @@ export type OfficerLinkTypes2 = {
  * appointmentList
  */
 export type AppointmentList = {
-  /**
-   * The officer's date of birth details.
-   */
-  date_of_birth?: {
-    [key: string]: unknown;
-  };
+  date_of_birth?: DateOfBirth2;
   /**
    * The ETag of the resource.
    */
@@ -3122,12 +2837,7 @@ export type AppointmentList = {
    */
   items_per_page: number;
   kind: "personal-appointment";
-  /**
-   * Links to other resources associated with this officer appointment resource.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: OfficerLinkTypes2;
   /**
    * The corporate or natural officer name.
    */
@@ -3399,10 +3109,7 @@ export type ChargeDetails = {
    * Transactions that have been filed for the charge.
    */
   insolvency_cases?: Array<InsolvencyCases>;
-  /**
-   * The resources related to this charge
-   */
-  links?: Array<ChargeLinks>;
+  links?: ChargeLinks;
 };
 
 /**
@@ -3572,12 +3279,7 @@ export type Case = {
    * The practitioners for the case.
    */
   practitioners: Array<Practitioners>;
-  /**
-   * The practitioners for the case.
-   */
-  links?: {
-    [key: string]: unknown;
-  };
+  links?: Links2;
   /**
    * The case number.
    */
@@ -3651,12 +3353,7 @@ export type CompanyDetails = {
    * The locality e.g London.
    */
   locality?: string;
-  /**
-   * Resources related to this company.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: Links3;
 };
 
 /**
@@ -3671,12 +3368,7 @@ export type CompanyUkEstablishments = {
    * UK Establishment companies.
    */
   kind: "ukestablishment-companies";
-  /**
-   * UK Establishment Resources related to this company.
-   */
-  links?: {
-    [key: string]: unknown;
-  };
+  links?: SelfLinks;
   /**
    * List of UK Establishment companies.
    */
@@ -3910,41 +3602,19 @@ export type ListTwoSummary = {
    * The country of residence of the person with significant control.
    */
   country_of_residence?: string;
-  /**
-   * The date of birth of the person with significant control.
-   */
-  date_of_birth?: {
-    [key: string]: unknown;
-  };
+  date_of_birth?: DateOfBirthPscList;
   /**
    * Name of the person with significant control.
    */
   name: string;
-  /**
-   * A document encapsulating the separate elements of a person with significant control's name.
-   */
-  name_elements?: {
-    [key: string]: unknown;
-  };
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  name_elements?: NameElements2;
+  links: PscItemsListLinksType;
   /**
    * The nationality of the person with significant control.
    */
   nationality?: string;
-  identification?: {
-    [key: string]: unknown;
-  };
-  /**
-   * Information relating to the identity verification of the person with significant control
-   */
-  identity_verification_details?: {
-    [key: string]: unknown;
-  };
+  identification?: PscListIdent;
+  identity_verification_details?: IdentityVerificationDetails2;
   /**
    * Presence of that indicator means the super secure person status is ceased <br />
    */
@@ -3962,12 +3632,7 @@ export type ListTwoSummary = {
     | "corporate-entity-beneficial-owner"
     | "legal-person-beneficial-owner"
     | "super-secure-beneficial-owner";
-  /**
-   * The service address of the person with significant control. If given, this address will be shown on the public record instead of the residential address.
-   */
-  address: {
-    [key: string]: unknown;
-  };
+  address: Address4;
   /**
    * Indicates the nature of control the person with significant control holds.
    * For enumeration descriptions see `description` section in the [enumeration mappings](https://github.com/companieshouse/api-enumerations/blob/master/psc_descriptions.yml) file.
@@ -3978,12 +3643,7 @@ export type ListTwoSummary = {
    * Flag indicating if the beneficial owner was declared as being sanctioned on the latest filing of the overseas entity
    */
   is_sanctioned?: boolean;
-  /**
-   * The principal/registered office address of a corporate-entity-beneficial-owner or legal-person-beneficial-owner of a registered-overseas-entity.
-   */
-  principal_office_address?: {
-    [key: string]: unknown;
-  };
+  principal_office_address?: BeneficialOwnerAddress;
 };
 
 /**
@@ -4028,12 +3688,7 @@ export type List = {
    * The number of ceased persons with significant control in this result set.
    */
   ceased_count: number;
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: PscListLinksType;
 };
 
 /**
@@ -4098,50 +3753,25 @@ export type Individual = {
    * The country of residence of the person with significant control.
    */
   country_of_residence: string;
-  /**
-   * The date of birth of the person with significant control.
-   */
-  date_of_birth: {
-    [key: string]: unknown;
-  };
+  date_of_birth: DateOfBirth3;
   /**
    * Name of the person with significant control. Generated by combining the name elements.
    */
   name: string;
-  /**
-   * A document encapsulating the separate elements of a person with significant control's name.
-   */
-  name_elements: {
-    [key: string]: unknown;
-  };
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  name_elements: NameElements2;
+  links: PscLinksType;
   /**
    * The nationality of the person with significant control.
    */
   nationality: string;
-  /**
-   * The service address of the person with significant control. If given, this address will be shown on the public record instead of the residential address.
-   */
-  address: {
-    [key: string]: unknown;
-  };
+  address: Address4;
   /**
    * Indicates the nature of control the person with significant control holds.
    * For enumeration descriptions see `description` section in the [enumeration mappings](https://github.com/companieshouse/api-enumerations/blob/master/psc_descriptions.yml) file.
    *
    */
   natures_of_control: Array<unknown>;
-  /**
-   * Information relating to the identity verification of the person with significant control
-   */
-  identity_verification_details?: {
-    [key: string]: unknown;
-  };
+  identity_verification_details?: IdentityVerificationDetails2;
 };
 
 /**
@@ -4224,38 +3854,18 @@ export type IndividualBeneficialOwner = {
    */
   ceased_on?: string;
   kind: "individual-beneficial-owner";
-  /**
-   * The date of birth of the beneficial owner.
-   */
-  date_of_birth?: {
-    [key: string]: unknown;
-  };
+  date_of_birth?: BeneficialOwnerDateOfBirth;
   /**
    * Name of the beneficial owner. Generated by combining the name elements.
    */
   name?: string;
-  /**
-   * A document encapsulating the separate elements of a beneficial owner's name.
-   */
-  name_elements?: {
-    [key: string]: unknown;
-  };
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  name_elements?: BeneficialOwnerNameElements;
+  links: BeneficialOwnerLinksType;
   /**
    * The nationality of the beneficial owner.
    */
   nationality?: string;
-  /**
-   * The service address of the beneficial owner. If given, this address will be shown on the public record instead of the residential address.
-   */
-  address?: {
-    [key: string]: unknown;
-  };
+  address?: BeneficialOwnerAddress;
   /**
    * Indicates the nature of control the beneficial owner holds.
    * For enumeration descriptions see `description` section in the [enumeration mappings](https://github.com/companieshouse/api-enumerations/blob/master/psc_descriptions.yml) file.
@@ -4315,21 +3925,9 @@ export type CorporateEntity = {
    * Name of the person with significant control.
    */
   name: string;
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
-  /**
-   * The address of the person with significant control.
-   */
-  address: {
-    [key: string]: unknown;
-  };
-  identification: {
-    [key: string]: unknown;
-  };
+  links: PscLinksType;
+  address: Address4;
+  identification: CorporateEntityIdent;
   /**
    * Indicates the nature of control the person with significant control holds.
    * For enumeration descriptions see `description` section in the [enumeration mappings](https://github.com/companieshouse/api-enumerations/blob/master/psc_descriptions.yml) file.
@@ -4385,27 +3983,10 @@ export type CorporateEntityBeneficialOwner = {
    * Name of the beneficial owner.
    */
   name?: string;
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
-  /**
-   * The address of the beneficial owner.
-   */
-  address?: {
-    [key: string]: unknown;
-  };
-  /**
-   * The principal/registered office address of a corporate-entity-beneficial-owner of a registered-overseas-entity.
-   */
-  principal_office_address?: {
-    [key: string]: unknown;
-  };
-  identification?: {
-    [key: string]: unknown;
-  };
+  links: BeneficialOwnerLinksType;
+  address?: BeneficialOwnerAddress;
+  principal_office_address?: BeneficialOwnerAddress;
+  identification?: BeneficialOwnerCorporateEntityIdent;
   /**
    * Indicates the nature of control the beneficial owner holds.
    * For enumeration descriptions see `description` section in the [enumeration mappings](https://github.com/companieshouse/api-enumerations/blob/master/psc_descriptions.yml) file.
@@ -4453,21 +4034,9 @@ export type LegalPerson = {
    * Name of the person with significant control.
    */
   name: string;
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
-  /**
-   * The address of the person with significant control.
-   */
-  address: {
-    [key: string]: unknown;
-  };
-  identification: {
-    [key: string]: unknown;
-  };
+  links: PscLinksType;
+  address: Address4;
+  identification: LegalPersonIdent;
   /**
    * Indicates the nature of control the person with significant control holds.
    * For enumeration descriptions see `description` section in the [enumeration mappings](https://github.com/companieshouse/api-enumerations/blob/master/psc_descriptions.yml) file.
@@ -4511,27 +4080,10 @@ export type LegalPersonBeneficialOwner = {
    * Name of the beneficial owner.
    */
   name?: string;
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
-  /**
-   * The address of the beneficial owner.
-   */
-  address?: {
-    [key: string]: unknown;
-  };
-  /**
-   * The principal/registered office address of a legal-person-beneficial-owner of a registered-overseas-entity.
-   */
-  principal_office_address?: {
-    [key: string]: unknown;
-  };
-  identification?: {
-    [key: string]: unknown;
-  };
+  links: BeneficialOwnerLinksType;
+  address?: BeneficialOwnerAddress;
+  principal_office_address?: BeneficialOwnerAddress;
+  identification?: LegalPersonBeneficialOwnerIdent;
   /**
    * Indicates the nature of control the beneficial owner holds.
    * For enumeration descriptions see `description` section in the [enumeration mappings](https://github.com/companieshouse/api-enumerations/blob/master/psc_descriptions.yml) file.
@@ -4595,12 +4147,7 @@ export type Statement = {
    * The name of the psc linked to this statement.
    */
   linked_psc_name?: string;
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: StatementLinksType;
 };
 
 /**
@@ -4625,12 +4172,7 @@ export type StatementList = {
    * The number of persons with significant control statements to return per page.
    */
   items_per_page: number;
-  /**
-   * The list of persons with significant control statements.
-   */
-  items: {
-    [key: string]: unknown;
-  };
+  items: Array<Statement>;
   /**
    * The offset into the entire result set that this page starts.
    */
@@ -4647,12 +4189,7 @@ export type StatementList = {
    * The number of ceased persons with significant control statements in this result set.
    */
   ceased_count: number;
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: StatementListLinksType;
 };
 
 /**
@@ -4697,12 +4234,7 @@ export type SuperSecure = {
    *
    */
   ceased?: boolean;
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: SuperSecureLinksType;
 };
 
 /**
@@ -4724,12 +4256,7 @@ export type SuperSecureBeneficialOwner = {
    *
    */
   ceased?: boolean;
-  /**
-   * A set of URLs related to the resource, including self.
-   */
-  links: {
-    [key: string]: unknown;
-  };
+  links: SuperSecureLinksType;
 };
 
 /**
@@ -5397,7 +4924,7 @@ export type AdvancedCompanySearchResponses = {
 export type AdvancedCompanySearchResponse =
   AdvancedCompanySearchResponses[keyof AdvancedCompanySearchResponses];
 
-export type ListData = {
+export type ListOfficersData = {
   body?: never;
   path: {
     /**
@@ -5430,7 +4957,7 @@ export type ListData = {
   url: "/company/{company_number}/officers";
 };
 
-export type ListErrors = {
+export type ListOfficersErrors = {
   /**
    * Bad request
    */
@@ -5441,18 +4968,18 @@ export type ListErrors = {
   401: unknown;
 };
 
-export type ListError = ListErrors[keyof ListErrors];
+export type ListOfficersError = ListOfficersErrors[keyof ListOfficersErrors];
 
-export type ListResponses = {
+export type ListOfficersResponses = {
   /**
    * List the company officers
    */
   200: OfficerList;
 };
 
-export type ListResponse = ListResponses[keyof ListResponses];
+export type ListOfficersResponse = ListOfficersResponses[keyof ListOfficersResponses];
 
-export type GetACompanyOfficerAppointmentData = {
+export type GetOfficerAppointmentData = {
   body?: never;
   path: {
     /**
@@ -5468,7 +4995,7 @@ export type GetACompanyOfficerAppointmentData = {
   url: "/company/{company_number}/appointments/{appointment_id}";
 };
 
-export type GetACompanyOfficerAppointmentErrors = {
+export type GetOfficerAppointmentErrors = {
   /**
    * Bad request
    */
@@ -5479,20 +5006,20 @@ export type GetACompanyOfficerAppointmentErrors = {
   401: unknown;
 };
 
-export type GetACompanyOfficerAppointmentError =
-  GetACompanyOfficerAppointmentErrors[keyof GetACompanyOfficerAppointmentErrors];
+export type GetOfficerAppointmentError =
+  GetOfficerAppointmentErrors[keyof GetOfficerAppointmentErrors];
 
-export type GetACompanyOfficerAppointmentResponses = {
+export type GetOfficerAppointmentResponses = {
   /**
    * Get a company officer appointment
    */
   200: OfficerSummary;
 };
 
-export type GetACompanyOfficerAppointmentResponse =
-  GetACompanyOfficerAppointmentResponses[keyof GetACompanyOfficerAppointmentResponses];
+export type GetOfficerAppointmentResponse =
+  GetOfficerAppointmentResponses[keyof GetOfficerAppointmentResponses];
 
-export type CompanyRegistersData = {
+export type GetRegistersData = {
   body?: never;
   path: {
     /**
@@ -5504,23 +5031,23 @@ export type CompanyRegistersData = {
   url: "/company/{company_number}/registers";
 };
 
-export type CompanyRegistersErrors = {
+export type GetRegistersErrors = {
   /**
    * Unauthorised
    */
   401: unknown;
 };
 
-export type CompanyRegistersResponses = {
+export type GetRegistersResponses = {
   /**
    * readCompanyRegister
    */
   200: CompanyRegister;
 };
 
-export type CompanyRegistersResponse = CompanyRegistersResponses[keyof CompanyRegistersResponses];
+export type GetRegistersResponse = GetRegistersResponses[keyof GetRegistersResponses];
 
-export type FilinghistoryitemResourceData = {
+export type GetFilingHistoryItemData = {
   body?: never;
   path: {
     /**
@@ -5536,7 +5063,7 @@ export type FilinghistoryitemResourceData = {
   url: "/company/{company_number}/filing-history/{transaction_id}";
 };
 
-export type FilinghistoryitemResourceErrors = {
+export type GetFilingHistoryItemErrors = {
   /**
    * Unauthorised
    */
@@ -5547,20 +5074,20 @@ export type FilinghistoryitemResourceErrors = {
   404: unknown;
 };
 
-export type FilinghistoryitemResourceError =
-  FilinghistoryitemResourceErrors[keyof FilinghistoryitemResourceErrors];
+export type GetFilingHistoryItemError =
+  GetFilingHistoryItemErrors[keyof GetFilingHistoryItemErrors];
 
-export type FilinghistoryitemResourceResponses = {
+export type GetFilingHistoryItemResponses = {
   /**
    * Filing history items resource returned
    */
   200: FilingHistoryItem;
 };
 
-export type FilinghistoryitemResourceResponse =
-  FilinghistoryitemResourceResponses[keyof FilinghistoryitemResourceResponses];
+export type GetFilingHistoryItemResponse =
+  GetFilingHistoryItemResponses[keyof GetFilingHistoryItemResponses];
 
-export type List2Data = {
+export type ListFilingHistoryData = {
   body?: never;
   path: {
     /**
@@ -5585,7 +5112,7 @@ export type List2Data = {
   url: "/company/{company_number}/filing-history";
 };
 
-export type List2Errors = {
+export type ListFilingHistoryErrors = {
   /**
    * Unauthorised
    */
@@ -5596,18 +5123,19 @@ export type List2Errors = {
   404: unknown;
 };
 
-export type List2Error = List2Errors[keyof List2Errors];
+export type ListFilingHistoryError = ListFilingHistoryErrors[keyof ListFilingHistoryErrors];
 
-export type List2Responses = {
+export type ListFilingHistoryResponses = {
   /**
    * Filing history items resource returned
    */
   200: FilingHistoryList;
 };
 
-export type List2Response = List2Responses[keyof List2Responses];
+export type ListFilingHistoryResponse =
+  ListFilingHistoryResponses[keyof ListFilingHistoryResponses];
 
-export type GetCompanyCompanyNumberExemptionsData = {
+export type GetExemptionsData = {
   body?: never;
   path: {
     /**
@@ -5619,7 +5147,7 @@ export type GetCompanyCompanyNumberExemptionsData = {
   url: "/company/{company_number}/exemptions";
 };
 
-export type GetCompanyCompanyNumberExemptionsErrors = {
+export type GetExemptionsErrors = {
   /**
    * Unauthorised
    */
@@ -5630,17 +5158,16 @@ export type GetCompanyCompanyNumberExemptionsErrors = {
   404: unknown;
 };
 
-export type GetCompanyCompanyNumberExemptionsResponses = {
+export type GetExemptionsResponses = {
   /**
    * Successful response
    */
   200: CompanyExemptions;
 };
 
-export type GetCompanyCompanyNumberExemptionsResponse =
-  GetCompanyCompanyNumberExemptionsResponses[keyof GetCompanyCompanyNumberExemptionsResponses];
+export type GetExemptionsResponse = GetExemptionsResponses[keyof GetExemptionsResponses];
 
-export type GetNaturalOfficerData = {
+export type GetNaturalDisqualificationData = {
   body?: never;
   path: {
     /**
@@ -5652,7 +5179,7 @@ export type GetNaturalOfficerData = {
   url: "/disqualified-officers/natural/{officer_id}";
 };
 
-export type GetNaturalOfficerErrors = {
+export type GetNaturalDisqualificationErrors = {
   /**
    * Unauthorised
    */
@@ -5663,17 +5190,17 @@ export type GetNaturalOfficerErrors = {
   404: unknown;
 };
 
-export type GetNaturalOfficerResponses = {
+export type GetNaturalDisqualificationResponses = {
   /**
    * Natural officer's disqualifications returned
    */
   200: NaturalDisqualification;
 };
 
-export type GetNaturalOfficerResponse =
-  GetNaturalOfficerResponses[keyof GetNaturalOfficerResponses];
+export type GetNaturalDisqualificationResponse =
+  GetNaturalDisqualificationResponses[keyof GetNaturalDisqualificationResponses];
 
-export type GetCorporateOfficerData = {
+export type GetCorporateDisqualificationData = {
   body?: never;
   path: {
     /**
@@ -5685,7 +5212,7 @@ export type GetCorporateOfficerData = {
   url: "/disqualified-officers/corporate/{officer_id}";
 };
 
-export type GetCorporateOfficerErrors = {
+export type GetCorporateDisqualificationErrors = {
   /**
    * Unauthorised
    */
@@ -5696,17 +5223,17 @@ export type GetCorporateOfficerErrors = {
   404: unknown;
 };
 
-export type GetCorporateOfficerResponses = {
+export type GetCorporateDisqualificationResponses = {
   /**
    * Corporate officer's disqualifications returned
    */
   200: CorporateDisqualification;
 };
 
-export type GetCorporateOfficerResponse =
-  GetCorporateOfficerResponses[keyof GetCorporateOfficerResponses];
+export type GetCorporateDisqualificationResponse =
+  GetCorporateDisqualificationResponses[keyof GetCorporateDisqualificationResponses];
 
-export type List3Data = {
+export type ListOfficerAppointmentsData = {
   body?: never;
   path: {
     /**
@@ -5731,7 +5258,7 @@ export type List3Data = {
   url: "/officers/{officer_id}/appointments";
 };
 
-export type List3Errors = {
+export type ListOfficerAppointmentsErrors = {
   /**
    * Bad request
    */
@@ -5742,16 +5269,17 @@ export type List3Errors = {
   401: unknown;
 };
 
-export type List3Responses = {
+export type ListOfficerAppointmentsResponses = {
   /**
    * List the officer appointments
    */
   200: AppointmentList;
 };
 
-export type List3Response = List3Responses[keyof List3Responses];
+export type ListOfficerAppointmentsResponse =
+  ListOfficerAppointmentsResponses[keyof ListOfficerAppointmentsResponses];
 
-export type List4Data = {
+export type ListChargesData = {
   body?: never;
   path: {
     /**
@@ -5774,7 +5302,7 @@ export type List4Data = {
   url: "/company/{company_number}/charges";
 };
 
-export type List4Errors = {
+export type ListChargesErrors = {
   /**
    * Unauthorised
    */
@@ -5785,16 +5313,16 @@ export type List4Errors = {
   404: unknown;
 };
 
-export type List4Responses = {
+export type ListChargesResponses = {
   /**
    * Resource returned
    */
   200: ChargeList;
 };
 
-export type List4Response = List4Responses[keyof List4Responses];
+export type ListChargesResponse = ListChargesResponses[keyof ListChargesResponses];
 
-export type GetCompanyCompanyNumberChargesChargeIdData = {
+export type GetChargeData = {
   body?: never;
   path: {
     company_number: string;
@@ -5804,7 +5332,7 @@ export type GetCompanyCompanyNumberChargesChargeIdData = {
   url: "/company/{company_number}/charges/{charge_id}";
 };
 
-export type GetCompanyCompanyNumberChargesChargeIdErrors = {
+export type GetChargeErrors = {
   /**
    * Unauthorised
    */
@@ -5815,17 +5343,16 @@ export type GetCompanyCompanyNumberChargesChargeIdErrors = {
   404: unknown;
 };
 
-export type GetCompanyCompanyNumberChargesChargeIdResponses = {
+export type GetChargeResponses = {
   /**
    * Resource returned
    */
   200: ChargeDetails;
 };
 
-export type GetCompanyCompanyNumberChargesChargeIdResponse =
-  GetCompanyCompanyNumberChargesChargeIdResponses[keyof GetCompanyCompanyNumberChargesChargeIdResponses];
+export type GetChargeResponse = GetChargeResponses[keyof GetChargeResponses];
 
-export type GetCompanyCompanyNumberInsolvencyData = {
+export type GetInsolvencyData = {
   body?: never;
   path: {
     /**
@@ -5837,7 +5364,7 @@ export type GetCompanyCompanyNumberInsolvencyData = {
   url: "/company/{company_number}/insolvency";
 };
 
-export type GetCompanyCompanyNumberInsolvencyErrors = {
+export type GetInsolvencyErrors = {
   /**
    * Unauthorized
    */
@@ -5848,17 +5375,16 @@ export type GetCompanyCompanyNumberInsolvencyErrors = {
   404: unknown;
 };
 
-export type GetCompanyCompanyNumberInsolvencyResponses = {
+export type GetInsolvencyResponses = {
   /**
    * Company insolvency resource returned
    */
   200: CompanyInsolvency;
 };
 
-export type GetCompanyCompanyNumberInsolvencyResponse =
-  GetCompanyCompanyNumberInsolvencyResponses[keyof GetCompanyCompanyNumberInsolvencyResponses];
+export type GetInsolvencyResponse = GetInsolvencyResponses[keyof GetInsolvencyResponses];
 
-export type CompanyUkEstablishmentsData = {
+export type ListUkEstablishmentsData = {
   body?: never;
   path: {
     /**
@@ -5870,24 +5396,24 @@ export type CompanyUkEstablishmentsData = {
   url: "/company/{company_number}/uk-establishments";
 };
 
-export type CompanyUkEstablishmentsErrors = {
+export type ListUkEstablishmentsErrors = {
   /**
    * Unauthorised
    */
   401: unknown;
 };
 
-export type CompanyUkEstablishmentsResponses = {
+export type ListUkEstablishmentsResponses = {
   /**
    * Resource returned
    */
   200: CompanyUkEstablishments;
 };
 
-export type CompanyUkEstablishmentsResponse =
-  CompanyUkEstablishmentsResponses[keyof CompanyUkEstablishmentsResponses];
+export type ListUkEstablishmentsResponse =
+  ListUkEstablishmentsResponses[keyof ListUkEstablishmentsResponses];
 
-export type List5Data = {
+export type ListPersonsWithSignificantControlData = {
   body?: never;
   path: {
     /**
@@ -5895,26 +5421,26 @@ export type List5Data = {
      */
     company_number: string;
   };
-  query: {
+  query?: {
     /**
      * The number of persons with significant control to return per page.
      */
-    items_per_page: string;
+    items_per_page?: string;
     /**
      * The offset into the entire result set that this page starts.
      */
-    start_index: string;
+    start_index?: string;
     /**
      * Display register specific information. If register is held at Companies House and register_view is set to true, only PSCs which are active or were terminated during election period are shown. Accepted values are: -`true`
      * -`false`
      * Defaults to false.
      */
-    register_view: string;
+    register_view?: string;
   };
   url: "/company/{company_number}/persons-with-significant-control";
 };
 
-export type List5Errors = {
+export type ListPersonsWithSignificantControlErrors = {
   /**
    * Unauthorised
    */
@@ -5925,16 +5451,17 @@ export type List5Errors = {
   404: unknown;
 };
 
-export type List5Responses = {
+export type ListPersonsWithSignificantControlResponses = {
   /**
    * readCompanyProfile
    */
   200: List;
 };
 
-export type List5Response = List5Responses[keyof List5Responses];
+export type ListPersonsWithSignificantControlResponse =
+  ListPersonsWithSignificantControlResponses[keyof ListPersonsWithSignificantControlResponses];
 
-export type GetIndividualData = {
+export type GetIndividualPscData = {
   body?: never;
   path: {
     /**
@@ -5950,7 +5477,7 @@ export type GetIndividualData = {
   url: "/company/{company_number}/persons-with-significant-control/individual/{notification_id}";
 };
 
-export type GetIndividualErrors = {
+export type GetIndividualPscErrors = {
   /**
    * Unauthorised
    */
@@ -5961,14 +5488,14 @@ export type GetIndividualErrors = {
   404: unknown;
 };
 
-export type GetIndividualResponses = {
+export type GetIndividualPscResponses = {
   /**
    * IndividualPSC resource returned
    */
   200: Individual;
 };
 
-export type GetIndividualResponse = GetIndividualResponses[keyof GetIndividualResponses];
+export type GetIndividualPscResponse = GetIndividualPscResponses[keyof GetIndividualPscResponses];
 
 export type GetIndividualBeneficialOwnerData = {
   body?: never;
@@ -6007,7 +5534,7 @@ export type GetIndividualBeneficialOwnerResponses = {
 export type GetIndividualBeneficialOwnerResponse =
   GetIndividualBeneficialOwnerResponses[keyof GetIndividualBeneficialOwnerResponses];
 
-export type GetCorporateEntitiesData = {
+export type GetCorporateEntityPscData = {
   body?: never;
   path: {
     /**
@@ -6023,7 +5550,7 @@ export type GetCorporateEntitiesData = {
   url: "/company/{company_number}/persons-with-significant-control/corporate-entity/{notification_id}";
 };
 
-export type GetCorporateEntitiesErrors = {
+export type GetCorporateEntityPscErrors = {
   /**
    * Unauthorised
    */
@@ -6034,15 +5561,15 @@ export type GetCorporateEntitiesErrors = {
   404: unknown;
 };
 
-export type GetCorporateEntitiesResponses = {
+export type GetCorporateEntityPscResponses = {
   /**
    * CorporateEntityPSC resource returned
    */
   200: CorporateEntity;
 };
 
-export type GetCorporateEntitiesResponse =
-  GetCorporateEntitiesResponses[keyof GetCorporateEntitiesResponses];
+export type GetCorporateEntityPscResponse =
+  GetCorporateEntityPscResponses[keyof GetCorporateEntityPscResponses];
 
 export type GetCorporateEntityBeneficialOwnerData = {
   body?: never;
@@ -6081,7 +5608,7 @@ export type GetCorporateEntityBeneficialOwnerResponses = {
 export type GetCorporateEntityBeneficialOwnerResponse =
   GetCorporateEntityBeneficialOwnerResponses[keyof GetCorporateEntityBeneficialOwnerResponses];
 
-export type GetLegalPersonsData = {
+export type GetLegalPersonPscData = {
   body?: never;
   path: {
     /**
@@ -6097,7 +5624,7 @@ export type GetLegalPersonsData = {
   url: "/company/{company_number}/persons-with-significant-control/legal-person/{notification_id}";
 };
 
-export type GetLegalPersonsErrors = {
+export type GetLegalPersonPscErrors = {
   /**
    * Unauthorised
    */
@@ -6108,14 +5635,15 @@ export type GetLegalPersonsErrors = {
   404: unknown;
 };
 
-export type GetLegalPersonsResponses = {
+export type GetLegalPersonPscResponses = {
   /**
    * LegalPersonPSC resource returned
    */
   200: LegalPerson;
 };
 
-export type GetLegalPersonsResponse = GetLegalPersonsResponses[keyof GetLegalPersonsResponses];
+export type GetLegalPersonPscResponse =
+  GetLegalPersonPscResponses[keyof GetLegalPersonPscResponses];
 
 export type GetLegalPersonBeneficialOwnerData = {
   body?: never;
@@ -6154,7 +5682,7 @@ export type GetLegalPersonBeneficialOwnerResponses = {
 export type GetLegalPersonBeneficialOwnerResponse =
   GetLegalPersonBeneficialOwnerResponses[keyof GetLegalPersonBeneficialOwnerResponses];
 
-export type ListStatementsData = {
+export type ListPscStatementsData = {
   body?: never;
   path: {
     /**
@@ -6162,26 +5690,26 @@ export type ListStatementsData = {
      */
     company_number: string;
   };
-  query: {
+  query?: {
     /**
      * The id of the legal person with significant control details being requested.
      */
-    items_per_page: number;
+    items_per_page?: number;
     /**
      * The offset into the entire result set that this page starts.
      */
-    start_index: number;
+    start_index?: number;
     /**
      * Display register specific information. If register is held at Companies House and register_view is set to true, only statements which are active or were withdrawn during election period are shown. Accepted values are: -`true`
      * -`false`
      * Defaults to false.
      */
-    register_view: unknown;
+    register_view?: unknown;
   };
   url: "/company/{company_number}/persons-with-significant-control-statements";
 };
 
-export type ListStatementsErrors = {
+export type ListPscStatementsErrors = {
   /**
    * Unauthorised
    */
@@ -6192,16 +5720,17 @@ export type ListStatementsErrors = {
   404: unknown;
 };
 
-export type ListStatementsResponses = {
+export type ListPscStatementsResponses = {
   /**
    * CompanyPSCStatements resource returned
    */
   200: StatementList;
 };
 
-export type ListStatementsResponse = ListStatementsResponses[keyof ListStatementsResponses];
+export type ListPscStatementsResponse =
+  ListPscStatementsResponses[keyof ListPscStatementsResponses];
 
-export type GetStatementData = {
+export type GetPscStatementData = {
   body?: never;
   path: {
     /**
@@ -6217,7 +5746,7 @@ export type GetStatementData = {
   url: "/company/{company_number}/persons-with-significant-control-statements/{statement_id}";
 };
 
-export type GetStatementErrors = {
+export type GetPscStatementErrors = {
   /**
    * Unauthorised
    */
@@ -6228,16 +5757,16 @@ export type GetStatementErrors = {
   404: unknown;
 };
 
-export type GetStatementResponses = {
+export type GetPscStatementResponses = {
   /**
    * PSCStatement resource returned
    */
   200: Statement;
 };
 
-export type GetStatementResponse = GetStatementResponses[keyof GetStatementResponses];
+export type GetPscStatementResponse = GetPscStatementResponses[keyof GetPscStatementResponses];
 
-export type GetSuperSecurePersonData = {
+export type GetSuperSecurePscData = {
   body?: never;
   path: {
     /**
@@ -6253,7 +5782,7 @@ export type GetSuperSecurePersonData = {
   url: "/company/{company_number}/persons-with-significant-control/super-secure/{super_secure_id}";
 };
 
-export type GetSuperSecurePersonErrors = {
+export type GetSuperSecurePscErrors = {
   /**
    * Unauthorised
    */
@@ -6264,15 +5793,15 @@ export type GetSuperSecurePersonErrors = {
   404: unknown;
 };
 
-export type GetSuperSecurePersonResponses = {
+export type GetSuperSecurePscResponses = {
   /**
    * SuperSecurePSC resource returned
    */
   200: SuperSecure;
 };
 
-export type GetSuperSecurePersonResponse =
-  GetSuperSecurePersonResponses[keyof GetSuperSecurePersonResponses];
+export type GetSuperSecurePscResponse =
+  GetSuperSecurePscResponses[keyof GetSuperSecurePscResponses];
 
 export type GetSuperSecureBeneficialOwnerData = {
   body?: never;
@@ -6311,7 +5840,7 @@ export type GetSuperSecureBeneficialOwnerResponses = {
 export type GetSuperSecureBeneficialOwnerResponse =
   GetSuperSecureBeneficialOwnerResponses[keyof GetSuperSecureBeneficialOwnerResponses];
 
-export type List6Data = {
+export type ListPscNotificationsData = {
   body?: never;
   path: {
     /**
@@ -6337,7 +5866,7 @@ export type List6Data = {
   url: "/company/{company_number}/persons-with-significant-control/{psc_id}/notifications";
 };
 
-export type List6Errors = {
+export type ListPscNotificationsErrors = {
   /**
    * Bad request
    */
@@ -6348,16 +5877,17 @@ export type List6Errors = {
   401: unknown;
 };
 
-export type List6Responses = {
+export type ListPscNotificationsResponses = {
   /**
    * List the person with significant control notifications
    */
   200: NotificationList;
 };
 
-export type List6Response = List6Responses[keyof List6Responses];
+export type ListPscNotificationsResponse =
+  ListPscNotificationsResponses[keyof ListPscNotificationsResponses];
 
-export type RegisteredOfficeAddressData = {
+export type GetRegisteredOfficeAddressData = {
   body?: never;
   path: {
     /**
@@ -6369,7 +5899,7 @@ export type RegisteredOfficeAddressData = {
   url: "/company/{company_number}/registered-office-address";
 };
 
-export type RegisteredOfficeAddressErrors = {
+export type GetRegisteredOfficeAddressErrors = {
   /**
    * Not authorised
    */
@@ -6380,17 +5910,17 @@ export type RegisteredOfficeAddressErrors = {
   404: unknown;
 };
 
-export type RegisteredOfficeAddressResponses = {
+export type GetRegisteredOfficeAddressResponses = {
   /**
    * Successful response
    */
   200: RegisteredOfficeAddress;
 };
 
-export type RegisteredOfficeAddressResponse =
-  RegisteredOfficeAddressResponses[keyof RegisteredOfficeAddressResponses];
+export type GetRegisteredOfficeAddressResponse =
+  GetRegisteredOfficeAddressResponses[keyof GetRegisteredOfficeAddressResponses];
 
-export type CompanyProfileData = {
+export type GetCompanyProfileData = {
   body?: never;
   path: {
     /**
@@ -6402,7 +5932,7 @@ export type CompanyProfileData = {
   url: "/company/{company_number}";
 };
 
-export type CompanyProfileErrors = {
+export type GetCompanyProfileErrors = {
   /**
    * Unauthorised
    */
@@ -6413,11 +5943,12 @@ export type CompanyProfileErrors = {
   404: unknown;
 };
 
-export type CompanyProfileResponses = {
+export type GetCompanyProfileResponses = {
   /**
    * readCompanyProfile
    */
   200: CompanyProfile;
 };
 
-export type CompanyProfileResponse = CompanyProfileResponses[keyof CompanyProfileResponses];
+export type GetCompanyProfileResponse =
+  GetCompanyProfileResponses[keyof GetCompanyProfileResponses];

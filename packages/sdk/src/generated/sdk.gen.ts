@@ -6,87 +6,87 @@ import type {
   AdvancedCompanySearchData,
   AdvancedCompanySearchErrors,
   AdvancedCompanySearchResponses,
-  CompanyProfileData,
-  CompanyProfileErrors,
-  CompanyProfileResponses,
-  CompanyRegistersData,
-  CompanyRegistersErrors,
-  CompanyRegistersResponses,
-  CompanyUkEstablishmentsData,
-  CompanyUkEstablishmentsErrors,
-  CompanyUkEstablishmentsResponses,
-  FilinghistoryitemResourceData,
-  FilinghistoryitemResourceErrors,
-  FilinghistoryitemResourceResponses,
-  GetACompanyOfficerAppointmentData,
-  GetACompanyOfficerAppointmentErrors,
-  GetACompanyOfficerAppointmentResponses,
-  GetCompanyCompanyNumberChargesChargeIdData,
-  GetCompanyCompanyNumberChargesChargeIdErrors,
-  GetCompanyCompanyNumberChargesChargeIdResponses,
-  GetCompanyCompanyNumberExemptionsData,
-  GetCompanyCompanyNumberExemptionsErrors,
-  GetCompanyCompanyNumberExemptionsResponses,
-  GetCompanyCompanyNumberInsolvencyData,
-  GetCompanyCompanyNumberInsolvencyErrors,
-  GetCompanyCompanyNumberInsolvencyResponses,
-  GetCorporateEntitiesData,
-  GetCorporateEntitiesErrors,
-  GetCorporateEntitiesResponses,
+  GetChargeData,
+  GetChargeErrors,
+  GetChargeResponses,
+  GetCompanyProfileData,
+  GetCompanyProfileErrors,
+  GetCompanyProfileResponses,
+  GetCorporateDisqualificationData,
+  GetCorporateDisqualificationErrors,
+  GetCorporateDisqualificationResponses,
   GetCorporateEntityBeneficialOwnerData,
   GetCorporateEntityBeneficialOwnerErrors,
   GetCorporateEntityBeneficialOwnerResponses,
-  GetCorporateOfficerData,
-  GetCorporateOfficerErrors,
-  GetCorporateOfficerResponses,
+  GetCorporateEntityPscData,
+  GetCorporateEntityPscErrors,
+  GetCorporateEntityPscResponses,
+  GetExemptionsData,
+  GetExemptionsErrors,
+  GetExemptionsResponses,
+  GetFilingHistoryItemData,
+  GetFilingHistoryItemErrors,
+  GetFilingHistoryItemResponses,
   GetIndividualBeneficialOwnerData,
   GetIndividualBeneficialOwnerErrors,
   GetIndividualBeneficialOwnerResponses,
-  GetIndividualData,
-  GetIndividualErrors,
-  GetIndividualResponses,
+  GetIndividualPscData,
+  GetIndividualPscErrors,
+  GetIndividualPscResponses,
+  GetInsolvencyData,
+  GetInsolvencyErrors,
+  GetInsolvencyResponses,
   GetLegalPersonBeneficialOwnerData,
   GetLegalPersonBeneficialOwnerErrors,
   GetLegalPersonBeneficialOwnerResponses,
-  GetLegalPersonsData,
-  GetLegalPersonsErrors,
-  GetLegalPersonsResponses,
-  GetNaturalOfficerData,
-  GetNaturalOfficerErrors,
-  GetNaturalOfficerResponses,
-  GetStatementData,
-  GetStatementErrors,
-  GetStatementResponses,
+  GetLegalPersonPscData,
+  GetLegalPersonPscErrors,
+  GetLegalPersonPscResponses,
+  GetNaturalDisqualificationData,
+  GetNaturalDisqualificationErrors,
+  GetNaturalDisqualificationResponses,
+  GetOfficerAppointmentData,
+  GetOfficerAppointmentErrors,
+  GetOfficerAppointmentResponses,
+  GetPscStatementData,
+  GetPscStatementErrors,
+  GetPscStatementResponses,
+  GetRegisteredOfficeAddressData,
+  GetRegisteredOfficeAddressErrors,
+  GetRegisteredOfficeAddressResponses,
+  GetRegistersData,
+  GetRegistersErrors,
+  GetRegistersResponses,
   GetSuperSecureBeneficialOwnerData,
   GetSuperSecureBeneficialOwnerErrors,
   GetSuperSecureBeneficialOwnerResponses,
-  GetSuperSecurePersonData,
-  GetSuperSecurePersonErrors,
-  GetSuperSecurePersonResponses,
-  List2Data,
-  List2Errors,
-  List2Responses,
-  List3Data,
-  List3Errors,
-  List3Responses,
-  List4Data,
-  List4Errors,
-  List4Responses,
-  List5Data,
-  List5Errors,
-  List5Responses,
-  List6Data,
-  List6Errors,
-  List6Responses,
-  ListData,
-  ListErrors,
-  ListResponses,
-  ListStatementsData,
-  ListStatementsErrors,
-  ListStatementsResponses,
-  RegisteredOfficeAddressData,
-  RegisteredOfficeAddressErrors,
-  RegisteredOfficeAddressResponses,
+  GetSuperSecurePscData,
+  GetSuperSecurePscErrors,
+  GetSuperSecurePscResponses,
+  ListChargesData,
+  ListChargesErrors,
+  ListChargesResponses,
+  ListFilingHistoryData,
+  ListFilingHistoryErrors,
+  ListFilingHistoryResponses,
+  ListOfficerAppointmentsData,
+  ListOfficerAppointmentsErrors,
+  ListOfficerAppointmentsResponses,
+  ListOfficersData,
+  ListOfficersErrors,
+  ListOfficersResponses,
+  ListPersonsWithSignificantControlData,
+  ListPersonsWithSignificantControlErrors,
+  ListPersonsWithSignificantControlResponses,
+  ListPscNotificationsData,
+  ListPscNotificationsErrors,
+  ListPscNotificationsResponses,
+  ListPscStatementsData,
+  ListPscStatementsErrors,
+  ListPscStatementsResponses,
+  ListUkEstablishmentsData,
+  ListUkEstablishmentsErrors,
+  ListUkEstablishmentsResponses,
   SearchAllData,
   SearchAllErrors,
   SearchAllResponses,
@@ -285,10 +285,10 @@ export const advancedCompanySearch = <ThrowOnError extends boolean = false>(
  * Company Officers
  * List of all company officers
  */
-export const list = <ThrowOnError extends boolean = false>(
-  options: Options<ListData, ThrowOnError>,
+export const listOfficers = <ThrowOnError extends boolean = false>(
+  options: Options<ListOfficersData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<ListResponses, ListErrors, ThrowOnError>({
+  return (options.client ?? client).get<ListOfficersResponses, ListOfficersErrors, ThrowOnError>({
     security: [
       {
         scheme: "basic",
@@ -304,12 +304,12 @@ export const list = <ThrowOnError extends boolean = false>(
  * Get a company officer appointment
  * Get details of an individual company officer appointment
  */
-export const getACompanyOfficerAppointment = <ThrowOnError extends boolean = false>(
-  options: Options<GetACompanyOfficerAppointmentData, ThrowOnError>,
+export const getOfficerAppointment = <ThrowOnError extends boolean = false>(
+  options: Options<GetOfficerAppointmentData, ThrowOnError>,
 ) => {
   return (options.client ?? client).get<
-    GetACompanyOfficerAppointmentResponses,
-    GetACompanyOfficerAppointmentErrors,
+    GetOfficerAppointmentResponses,
+    GetOfficerAppointmentErrors,
     ThrowOnError
   >({
     security: [
@@ -327,14 +327,10 @@ export const getACompanyOfficerAppointment = <ThrowOnError extends boolean = fal
  * Company registers
  * Get the company registers information
  */
-export const companyRegisters = <ThrowOnError extends boolean = false>(
-  options: Options<CompanyRegistersData, ThrowOnError>,
+export const getRegisters = <ThrowOnError extends boolean = false>(
+  options: Options<GetRegistersData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<
-    CompanyRegistersResponses,
-    CompanyRegistersErrors,
-    ThrowOnError
-  >({
+  return (options.client ?? client).get<GetRegistersResponses, GetRegistersErrors, ThrowOnError>({
     security: [
       {
         scheme: "basic",
@@ -350,12 +346,12 @@ export const companyRegisters = <ThrowOnError extends boolean = false>(
  * filingHistoryItem resource
  * Get the filing history item of a company
  */
-export const filinghistoryitemResource = <ThrowOnError extends boolean = false>(
-  options: Options<FilinghistoryitemResourceData, ThrowOnError>,
+export const getFilingHistoryItem = <ThrowOnError extends boolean = false>(
+  options: Options<GetFilingHistoryItemData, ThrowOnError>,
 ) => {
   return (options.client ?? client).get<
-    FilinghistoryitemResourceResponses,
-    FilinghistoryitemResourceErrors,
+    GetFilingHistoryItemResponses,
+    GetFilingHistoryItemErrors,
     ThrowOnError
   >({
     security: [
@@ -373,10 +369,14 @@ export const filinghistoryitemResource = <ThrowOnError extends boolean = false>(
  * filingHistoryList resource
  * Get the filing history list of a company
  */
-export const list2 = <ThrowOnError extends boolean = false>(
-  options: Options<List2Data, ThrowOnError>,
+export const listFilingHistory = <ThrowOnError extends boolean = false>(
+  options: Options<ListFilingHistoryData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<List2Responses, List2Errors, ThrowOnError>({
+  return (options.client ?? client).get<
+    ListFilingHistoryResponses,
+    ListFilingHistoryErrors,
+    ThrowOnError
+  >({
     security: [
       {
         scheme: "basic",
@@ -391,14 +391,10 @@ export const list2 = <ThrowOnError extends boolean = false>(
 /**
  * Company exemptions information
  */
-export const getCompanyCompanyNumberExemptions = <ThrowOnError extends boolean = false>(
-  options: Options<GetCompanyCompanyNumberExemptionsData, ThrowOnError>,
+export const getExemptions = <ThrowOnError extends boolean = false>(
+  options: Options<GetExemptionsData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<
-    GetCompanyCompanyNumberExemptionsResponses,
-    GetCompanyCompanyNumberExemptionsErrors,
-    ThrowOnError
-  >({
+  return (options.client ?? client).get<GetExemptionsResponses, GetExemptionsErrors, ThrowOnError>({
     security: [
       {
         scheme: "basic",
@@ -414,12 +410,12 @@ export const getCompanyCompanyNumberExemptions = <ThrowOnError extends boolean =
  * Get natural officers disqualifications
  * Get a natural officer's disqualifications
  */
-export const getNaturalOfficer = <ThrowOnError extends boolean = false>(
-  options: Options<GetNaturalOfficerData, ThrowOnError>,
+export const getNaturalDisqualification = <ThrowOnError extends boolean = false>(
+  options: Options<GetNaturalDisqualificationData, ThrowOnError>,
 ) => {
   return (options.client ?? client).get<
-    GetNaturalOfficerResponses,
-    GetNaturalOfficerErrors,
+    GetNaturalDisqualificationResponses,
+    GetNaturalDisqualificationErrors,
     ThrowOnError
   >({
     security: [
@@ -437,12 +433,12 @@ export const getNaturalOfficer = <ThrowOnError extends boolean = false>(
  * Get a corporate officers disqualifications
  * Get a corporate officer's disqualifications
  */
-export const getCorporateOfficer = <ThrowOnError extends boolean = false>(
-  options: Options<GetCorporateOfficerData, ThrowOnError>,
+export const getCorporateDisqualification = <ThrowOnError extends boolean = false>(
+  options: Options<GetCorporateDisqualificationData, ThrowOnError>,
 ) => {
   return (options.client ?? client).get<
-    GetCorporateOfficerResponses,
-    GetCorporateOfficerErrors,
+    GetCorporateDisqualificationResponses,
+    GetCorporateDisqualificationErrors,
     ThrowOnError
   >({
     security: [
@@ -460,10 +456,14 @@ export const getCorporateOfficer = <ThrowOnError extends boolean = false>(
  * Officer Appointment List
  * List of all officer appointments
  */
-export const list3 = <ThrowOnError extends boolean = false>(
-  options: Options<List3Data, ThrowOnError>,
+export const listOfficerAppointments = <ThrowOnError extends boolean = false>(
+  options: Options<ListOfficerAppointmentsData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<List3Responses, List3Errors, ThrowOnError>({
+  return (options.client ?? client).get<
+    ListOfficerAppointmentsResponses,
+    ListOfficerAppointmentsErrors,
+    ThrowOnError
+  >({
     security: [
       {
         scheme: "basic",
@@ -479,10 +479,10 @@ export const list3 = <ThrowOnError extends boolean = false>(
  * Charges
  * List of charges for a company.
  */
-export const list4 = <ThrowOnError extends boolean = false>(
-  options: Options<List4Data, ThrowOnError>,
+export const listCharges = <ThrowOnError extends boolean = false>(
+  options: Options<ListChargesData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<List4Responses, List4Errors, ThrowOnError>({
+  return (options.client ?? client).get<ListChargesResponses, ListChargesErrors, ThrowOnError>({
     security: [
       {
         scheme: "basic",
@@ -497,14 +497,10 @@ export const list4 = <ThrowOnError extends boolean = false>(
 /**
  * Individual charge information for company.
  */
-export const getCompanyCompanyNumberChargesChargeId = <ThrowOnError extends boolean = false>(
-  options: Options<GetCompanyCompanyNumberChargesChargeIdData, ThrowOnError>,
+export const getCharge = <ThrowOnError extends boolean = false>(
+  options: Options<GetChargeData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<
-    GetCompanyCompanyNumberChargesChargeIdResponses,
-    GetCompanyCompanyNumberChargesChargeIdErrors,
-    ThrowOnError
-  >({
+  return (options.client ?? client).get<GetChargeResponses, GetChargeErrors, ThrowOnError>({
     security: [
       {
         scheme: "basic",
@@ -519,14 +515,10 @@ export const getCompanyCompanyNumberChargesChargeId = <ThrowOnError extends bool
 /**
  * Company insolvency information
  */
-export const getCompanyCompanyNumberInsolvency = <ThrowOnError extends boolean = false>(
-  options: Options<GetCompanyCompanyNumberInsolvencyData, ThrowOnError>,
+export const getInsolvency = <ThrowOnError extends boolean = false>(
+  options: Options<GetInsolvencyData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<
-    GetCompanyCompanyNumberInsolvencyResponses,
-    GetCompanyCompanyNumberInsolvencyErrors,
-    ThrowOnError
-  >({
+  return (options.client ?? client).get<GetInsolvencyResponses, GetInsolvencyErrors, ThrowOnError>({
     security: [
       {
         scheme: "basic",
@@ -542,12 +534,12 @@ export const getCompanyCompanyNumberInsolvency = <ThrowOnError extends boolean =
  * Company UK Establishments
  * List of uk-establishments companies
  */
-export const companyUkEstablishments = <ThrowOnError extends boolean = false>(
-  options: Options<CompanyUkEstablishmentsData, ThrowOnError>,
+export const listUkEstablishments = <ThrowOnError extends boolean = false>(
+  options: Options<ListUkEstablishmentsData, ThrowOnError>,
 ) => {
   return (options.client ?? client).get<
-    CompanyUkEstablishmentsResponses,
-    CompanyUkEstablishmentsErrors,
+    ListUkEstablishmentsResponses,
+    ListUkEstablishmentsErrors,
     ThrowOnError
   >({
     security: [
@@ -565,10 +557,14 @@ export const companyUkEstablishments = <ThrowOnError extends boolean = false>(
  * List the company persons with significant control
  * List of all persons with significant control (not statements)
  */
-export const list5 = <ThrowOnError extends boolean = false>(
-  options: Options<List5Data, ThrowOnError>,
+export const listPersonsWithSignificantControl = <ThrowOnError extends boolean = false>(
+  options: Options<ListPersonsWithSignificantControlData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<List5Responses, List5Errors, ThrowOnError>({
+  return (options.client ?? client).get<
+    ListPersonsWithSignificantControlResponses,
+    ListPersonsWithSignificantControlErrors,
+    ThrowOnError
+  >({
     security: [
       {
         scheme: "basic",
@@ -584,10 +580,14 @@ export const list5 = <ThrowOnError extends boolean = false>(
  * Get the individual person with significant control notification
  * Get details of the individual person with significant control notification
  */
-export const getIndividual = <ThrowOnError extends boolean = false>(
-  options: Options<GetIndividualData, ThrowOnError>,
+export const getIndividualPsc = <ThrowOnError extends boolean = false>(
+  options: Options<GetIndividualPscData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<GetIndividualResponses, GetIndividualErrors, ThrowOnError>({
+  return (options.client ?? client).get<
+    GetIndividualPscResponses,
+    GetIndividualPscErrors,
+    ThrowOnError
+  >({
     security: [
       {
         scheme: "basic",
@@ -626,12 +626,12 @@ export const getIndividualBeneficialOwner = <ThrowOnError extends boolean = fals
  * Get the corporate entity with significant control notification
  * Get details of a corporate entity with significant control notification
  */
-export const getCorporateEntities = <ThrowOnError extends boolean = false>(
-  options: Options<GetCorporateEntitiesData, ThrowOnError>,
+export const getCorporateEntityPsc = <ThrowOnError extends boolean = false>(
+  options: Options<GetCorporateEntityPscData, ThrowOnError>,
 ) => {
   return (options.client ?? client).get<
-    GetCorporateEntitiesResponses,
-    GetCorporateEntitiesErrors,
+    GetCorporateEntityPscResponses,
+    GetCorporateEntityPscErrors,
     ThrowOnError
   >({
     security: [
@@ -672,12 +672,12 @@ export const getCorporateEntityBeneficialOwner = <ThrowOnError extends boolean =
  * Get the legal person with significant control notification
  * Get details of the legal person with significant control notification
  */
-export const getLegalPersons = <ThrowOnError extends boolean = false>(
-  options: Options<GetLegalPersonsData, ThrowOnError>,
+export const getLegalPersonPsc = <ThrowOnError extends boolean = false>(
+  options: Options<GetLegalPersonPscData, ThrowOnError>,
 ) => {
   return (options.client ?? client).get<
-    GetLegalPersonsResponses,
-    GetLegalPersonsErrors,
+    GetLegalPersonPscResponses,
+    GetLegalPersonPscErrors,
     ThrowOnError
   >({
     security: [
@@ -718,12 +718,12 @@ export const getLegalPersonBeneficialOwner = <ThrowOnError extends boolean = fal
  * List the company persons with significant control statements
  * List of all persons with significant control statements
  */
-export const listStatements = <ThrowOnError extends boolean = false>(
-  options: Options<ListStatementsData, ThrowOnError>,
+export const listPscStatements = <ThrowOnError extends boolean = false>(
+  options: Options<ListPscStatementsData, ThrowOnError>,
 ) => {
   return (options.client ?? client).get<
-    ListStatementsResponses,
-    ListStatementsErrors,
+    ListPscStatementsResponses,
+    ListPscStatementsErrors,
     ThrowOnError
   >({
     security: [
@@ -741,10 +741,14 @@ export const listStatements = <ThrowOnError extends boolean = false>(
  * Get the person with significant control statement
  * Get details of a person with significant control statement
  */
-export const getStatement = <ThrowOnError extends boolean = false>(
-  options: Options<GetStatementData, ThrowOnError>,
+export const getPscStatement = <ThrowOnError extends boolean = false>(
+  options: Options<GetPscStatementData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<GetStatementResponses, GetStatementErrors, ThrowOnError>({
+  return (options.client ?? client).get<
+    GetPscStatementResponses,
+    GetPscStatementErrors,
+    ThrowOnError
+  >({
     security: [
       {
         scheme: "basic",
@@ -760,12 +764,12 @@ export const getStatement = <ThrowOnError extends boolean = false>(
  * Get the super secure person with significant control
  * Get details of a super secure person with significant control
  */
-export const getSuperSecurePerson = <ThrowOnError extends boolean = false>(
-  options: Options<GetSuperSecurePersonData, ThrowOnError>,
+export const getSuperSecurePsc = <ThrowOnError extends boolean = false>(
+  options: Options<GetSuperSecurePscData, ThrowOnError>,
 ) => {
   return (options.client ?? client).get<
-    GetSuperSecurePersonResponses,
-    GetSuperSecurePersonErrors,
+    GetSuperSecurePscResponses,
+    GetSuperSecurePscErrors,
     ThrowOnError
   >({
     security: [
@@ -806,10 +810,14 @@ export const getSuperSecureBeneficialOwner = <ThrowOnError extends boolean = fal
  * Persons with significant control Notification List
  * List of all notifications of a specific person with significant control
  */
-export const list6 = <ThrowOnError extends boolean = false>(
-  options: Options<List6Data, ThrowOnError>,
+export const listPscNotifications = <ThrowOnError extends boolean = false>(
+  options: Options<ListPscNotificationsData, ThrowOnError>,
 ) => {
-  return (options.client ?? client).get<List6Responses, List6Errors, ThrowOnError>({
+  return (options.client ?? client).get<
+    ListPscNotificationsResponses,
+    ListPscNotificationsErrors,
+    ThrowOnError
+  >({
     security: [
       {
         scheme: "basic",
@@ -825,12 +833,12 @@ export const list6 = <ThrowOnError extends boolean = false>(
  * Registered Office Address
  * Get the current address of a company
  */
-export const registeredOfficeAddress = <ThrowOnError extends boolean = false>(
-  options: Options<RegisteredOfficeAddressData, ThrowOnError>,
+export const getRegisteredOfficeAddress = <ThrowOnError extends boolean = false>(
+  options: Options<GetRegisteredOfficeAddressData, ThrowOnError>,
 ) => {
   return (options.client ?? client).get<
-    RegisteredOfficeAddressResponses,
-    RegisteredOfficeAddressErrors,
+    GetRegisteredOfficeAddressResponses,
+    GetRegisteredOfficeAddressErrors,
     ThrowOnError
   >({
     security: [
@@ -848,12 +856,12 @@ export const registeredOfficeAddress = <ThrowOnError extends boolean = false>(
  * Company profile
  * Get the basic company information
  */
-export const companyProfile = <ThrowOnError extends boolean = false>(
-  options: Options<CompanyProfileData, ThrowOnError>,
+export const getCompanyProfile = <ThrowOnError extends boolean = false>(
+  options: Options<GetCompanyProfileData, ThrowOnError>,
 ) => {
   return (options.client ?? client).get<
-    CompanyProfileResponses,
-    CompanyProfileErrors,
+    GetCompanyProfileResponses,
+    GetCompanyProfileErrors,
     ThrowOnError
   >({
     security: [
