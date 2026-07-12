@@ -24,6 +24,14 @@ dist-ssr
 *.sln
 *.sw?
 
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Derived OpenAPI artifacts (regenerate with `vp run generate`)
+packages/sdk/spec/bundled.json
+
 # AI agent worktrees
 .claude/worktrees/
 !.vscode/

@@ -1,0 +1,17 @@
+{
+  "name": "@jxdltd/companies-house",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "generate": "redocly bundle spec/swagger.json -o spec/bundled.json --ext json && node scripts/fix-spec.mjs && openapi-ts"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "^0.84.4",
+    "@redocly/cli": "^2.4.0",
+    "typescript": "catalog:",
+    "vite-plus": "catalog:"
+  }
+}
