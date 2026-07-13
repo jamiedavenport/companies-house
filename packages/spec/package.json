@@ -8,8 +8,8 @@
     "./openapi.json": "./spec/companies-house.json"
   },
   "scripts": {
-    "download-spec": "node scripts/download-spec.ts",
-    "update-spec": "redocly bundle spec/swagger.json -o spec/companies-house.json --ext json && node scripts/fix-spec.ts"
+    "download-spec": "node src/download-spec.ts",
+    "update-spec": "redocly bundle spec/swagger.json -o spec/companies-house.json --ext json && node src/fix-spec.ts"
   },
   "devDependencies": {
     "@redocly/cli": "^2.4.0",
