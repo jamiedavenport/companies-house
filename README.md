@@ -1,6 +1,6 @@
 # Companies House SDK
 
-A _modern_ Typescript SDK for the Companies House API.
+A _modern_ TypeScript SDK for the Companies House API.
 
 ## Usage
 

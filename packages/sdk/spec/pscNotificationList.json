@@ -213,7 +213,9 @@
                   "anti_money_laundering_supervisory_bodies": {
                     "type": "array",
                     "description": "The Anti-Money Laundering supervisory bodies that the authorised corporate service provider was registered with when verifying the person with significant control",
-                    "items": { "type": "string" }
+                    "items": {
+                      "type": "string"
+                    }
                   },
                   "appointment_verification_end_on": {
                     "type": "string",

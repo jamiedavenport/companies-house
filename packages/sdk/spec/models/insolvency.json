@@ -17,7 +17,6 @@
         }
       }
     },
-
     "createdInsolvencyResource": {
       "title": "CreatedInsolvency",
       "type": "object",
@@ -138,7 +137,6 @@
         "$ref": "#/definitions/practitioner"
       }
     },
-
     "address": {
       "title": "address",
       "type": "object",

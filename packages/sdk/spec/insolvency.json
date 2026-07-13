@@ -816,11 +816,11 @@
             "$ref": "./models/insolvency.json#/definitions/statementOfAffairs"
           }
         },
-        "401": {
-          "description": "Unauthorized"
-        },
         "400": {
           "description": "Bad request"
+        },
+        "401": {
+          "description": "Unauthorized"
         },
         "403": {
           "description": "Forbidden"
