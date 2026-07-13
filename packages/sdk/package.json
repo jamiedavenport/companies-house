@@ -42,7 +42,7 @@
     "build": "vp pack",
     "generate": "openapi-ts",
     "test": "vp test run",
-    "update-spec": "redocly bundle spec/swagger.json -o spec/companies-house.json --ext json && node scripts/fix-spec.mjs"
+    "update-spec": "redocly bundle spec/swagger.json -o spec/companies-house.json --ext json && node scripts/fix-spec.ts"
   },
   "devDependencies": {
     "@hey-api/openapi-ts": "^0.84.4",
