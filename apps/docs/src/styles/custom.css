@@ -1,0 +1,96 @@
+/* JXD brand: red accent on near-black neutrals, matching jxd.dev. */
+
+/* Dark mode colors. */
+:root {
+  --sl-color-accent-low: #450a0a;
+  --sl-color-accent: #dc2626;
+  --sl-color-accent-high: #fecaca;
+  --sl-font: "InterVariable", ui-sans-serif, system-ui, sans-serif;
+  --sl-font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+/* Light mode colors. */
+:root[data-theme="light"] {
+  --sl-color-accent-low: #fee2e2;
+  --sl-color-accent: #dc2626;
+  --sl-color-accent-high: #7f1d1d;
+}
+
+body {
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.site-title {
+  font-family: "Mona Sans", ui-sans-serif, system-ui, sans-serif;
+  font-variation-settings: "wdth" 125;
+  letter-spacing: -0.025em;
+}
+
+/* JXD credit section on the splash page. */
+.jxd-credit {
+  margin-top: 4rem;
+  border-top: 1px solid var(--sl-color-hairline);
+  padding-top: 3rem;
+}
+
+.jxd-credit-eyebrow {
+  font-family: var(--sl-font-mono, ui-monospace, monospace);
+  font-size: var(--sl-text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: #dc2626;
+}
+
+:root[data-theme="dark"] .jxd-credit-eyebrow {
+  color: #ef4444;
+}
+
+:root[data-theme="dark"] .jxd-credit-title a:hover,
+:root[data-theme="dark"] .jxd-credit-link a:hover {
+  color: #ef4444;
+}
+
+.jxd-credit-title {
+  margin-top: 1rem;
+}
+
+.jxd-credit-title a {
+  font-family: "Mona Sans", ui-sans-serif, system-ui, sans-serif;
+  font-variation-settings: "wdth" 125;
+  font-weight: 600;
+  font-size: var(--sl-text-3xl);
+  letter-spacing: -0.025em;
+  color: var(--sl-color-white);
+  text-decoration: none;
+}
+
+.jxd-credit-title a:hover {
+  color: #dc2626;
+}
+
+.jxd-credit-body {
+  margin-top: 0.75rem;
+  max-width: 40ch;
+  color: var(--sl-color-gray-3);
+}
+
+.jxd-credit-link {
+  margin-top: 1.5rem;
+}
+
+.jxd-credit-link a {
+  font-weight: 600;
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-white);
+  text-decoration: none;
+}
+
+.jxd-credit-link a:hover {
+  color: #dc2626;
+}

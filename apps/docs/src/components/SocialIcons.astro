@@ -1,0 +1,21 @@
+---
+import Default from "@astrojs/starlight/components/SocialIcons.astro";
+---
+
+<a href="https://jxd.dev" class="jxd-header-link">jxd.dev</a>
+<Default><slot /></Default>
+
+<style>
+  .jxd-header-link {
+    font-family: var(--sl-font-mono, ui-monospace, monospace);
+    font-size: var(--sl-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    color: var(--sl-color-text-accent);
+    text-decoration: none;
+  }
+
+  .jxd-header-link:hover {
+    color: var(--sl-color-white);
+  }
+</style>

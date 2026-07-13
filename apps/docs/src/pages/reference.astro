@@ -1,0 +1,56 @@
+---
+import spec from "@jxdltd/companies-house/openapi.json";
+import { ScalarComponent } from "@scalar/astro";
+// The package doesn't export the browser bundle as a subpath, so reach into
+// dist directly; Vite emits it as a hashed asset and we self-host it instead
+// of loading Scalar's unpinned jsdelivr build.
+import scalarJsUrl from "../../node_modules/@scalar/api-reference/dist/browser/standalone.js?url";
+
+const scalarCss = `
+.light-mode { --scalar-color-accent: #dc2626; }
+.dark-mode { --scalar-color-accent: #ef4444; }
+`;
+
+const content = {
+  ...spec,
+  info: {
+    ...spec.info,
+    "x-scalar-links": [
+      { name: "Guides", url: "/" },
+      { name: "Built by JXD", url: "https://jxd.dev" },
+    ],
+  },
+};
+---
+
+{/*
+  renderMode="client" so this page owns the document. The default static mode
+  nests Scalar's own full HTML document inside the body, which pushes the
+  charset declaration past the 1024-byte prescan window in dev and renders
+  Scalar's zero-width spaces as mojibake (e.g. "â€‹") when the browser falls
+  back to Windows-1252.
+*/}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>API Reference · Companies House SDK</title>
+    <meta
+      name="description"
+      content="Interactive reference for the Companies House Public Data API."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <ScalarComponent
+      renderMode="client"
+      configuration={{
+        content,
+        cdn: scalarJsUrl,
+        proxyUrl: "https://proxy.scalar.com",
+        customCss: scalarCss,
+      }}
+    />
+  </body>
+</html>

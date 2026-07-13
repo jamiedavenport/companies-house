@@ -13,8 +13,18 @@ catalog:
   vite-plus: 0.2.2
 overrides:
   vite: "catalog:"
+  # Astro's build mutates rollup output chunks, which the rolldown-based
+  # Vite+ core forbids, so give the Astro toolchain real Vite.
+  "astro>vite": npm:vite@^6.4.1
+  "@astrojs/starlight>vite": npm:vite@^6.4.1
+  "@scalar/astro>vite": npm:vite@^6.4.1
 peerDependencyRules:
   allowAny:
     - vite
   allowedVersions:
     vite: "*"
+allowBuilds:
+  esbuild: true
+  sharp: true
+  vue-demi: true
+  workerd: true

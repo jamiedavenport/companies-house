@@ -1,0 +1,22 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "0.36.3",
+    "@jxdltd/companies-house": "workspace:*",
+    "@scalar/api-reference": "^1.62.5",
+    "@scalar/astro": "^0.4.9",
+    "astro": "^5.18.2"
+  },
+  "devDependencies": {
+    "wrangler": "^4.110.0"
+  }
+}

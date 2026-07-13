@@ -1,0 +1,100 @@
+---
+import Default from "@astrojs/starlight/components/Footer.astro";
+---
+
+<Default><slot /></Default>
+
+<div class="jxd-footer">
+  <div class="jxd-footer-brand">
+    <a href="https://jxd.dev" class="jxd-wordmark">
+      <svg viewBox="0 0 16 16" aria-hidden="true" class="jxd-mark">
+        <path class="jxd-mark-ink" d="M0 0h8v8H0zM0 8h16v8H0z"></path>
+        <path class="jxd-mark-red" d="M8 0h8v8H8z"></path>
+      </svg>
+      JXD
+    </a>
+    <p>Serious software, shipped in weeks.</p>
+  </div>
+  <nav aria-label="JXD" class="jxd-footer-links">
+    <a href="https://jxd.dev/work">Work</a>
+    <a href="https://jxd.dev/how-we-work">Process</a>
+    <a href="https://jxd.dev/contact">Contact</a>
+    <span>© 2026 JXD Ltd</span>
+  </nav>
+</div>
+
+<style>
+  .jxd-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    margin-top: 3rem;
+    border-top: 1px solid var(--sl-color-hairline);
+    padding-top: 1.5rem;
+  }
+
+  .jxd-footer-brand {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .jxd-footer-brand p {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+
+  .jxd-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: "Mona Sans", ui-sans-serif, system-ui, sans-serif;
+    font-variation-settings: "wdth" 125;
+    font-weight: 600;
+    color: var(--sl-color-white);
+    text-decoration: none;
+  }
+
+  .jxd-mark {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+  }
+
+  .jxd-mark-ink {
+    fill: #0a0a0a;
+  }
+
+  :global([data-theme="dark"]) .jxd-mark-ink {
+    fill: #fafafa;
+  }
+
+  .jxd-mark-red {
+    fill: #dc2626;
+  }
+
+  .jxd-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    font-family: var(--sl-font-mono, ui-monospace, monospace);
+    font-size: var(--sl-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    color: var(--sl-color-gray-3);
+  }
+
+  .jxd-footer-links a {
+    font-weight: 400;
+    color: var(--sl-color-gray-3);
+    text-decoration: none;
+  }
+
+  .jxd-footer-links a:hover {
+    color: var(--sl-color-white);
+  }
+</style>

@@ -1,0 +1,52 @@
+---
+title: Companies House SDK
+description: A modern, fully typed TypeScript SDK for the Companies House Public Data API.
+template: splash
+head:
+  - tag: title
+    content: Companies House SDK
+hero:
+  tagline: A modern, fully typed TypeScript SDK for the Companies House Public Data API. Typed transport over fetch, nothing you didn't ask for.
+  actions:
+    - text: Get started
+      link: /guides/getting-started/
+      icon: right-arrow
+    - text: API Reference
+      link: /reference
+      variant: minimal
+      icon: open-book
+---
+
+import { Card, CardGrid } from "@astrojs/starlight/components";
+
+<CardGrid stagger>
+  <Card title="Fully typed" icon="seti:typescript">
+    Typed request parameters and responses for all 34 endpoints of the Public Data API, generated
+    from the OpenAPI specification.
+  </Card>
+  <Card title="Thin by design" icon="setting">
+    A typed transport over `fetch` with auth handled for you. Bring your own retry, rate-limiting,
+    or caching policy via the `fetch` option.
+  </Card>
+  <Card title="Isolated instances" icon="puzzle">
+    Create as many clients as you need with different keys. Nothing is shared or global.
+  </Card>
+  <Card title="Verified daily" icon="approve-check">
+    A scheduled integration suite runs every endpoint against the live API, catching upstream drift.
+  </Card>
+</CardGrid>
+
+<div class="jxd-credit">
+  <p class="jxd-credit-eyebrow">Built by</p>
+  <p class="jxd-credit-title">
+    <a href="https://jxd.dev">JXD</a>
+  </p>
+  <p class="jxd-credit-body">
+    A London software consultancy. Serious software, shipped in weeks, owned entirely by your team.
+  </p>
+  <p class="jxd-credit-link">
+    <a href="https://jxd.dev">
+      jxd.dev <span aria-hidden="true">→</span>
+    </a>
+  </p>
+</div>
