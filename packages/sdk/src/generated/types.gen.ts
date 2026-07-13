@@ -4772,7 +4772,7 @@ export type SearchDissolvedCompaniesData = {
     /**
      * Used in best-match and previous-name-dissolved search-type
      */
-    start_index?: string;
+    start_index?: number;
   };
   url: "/dissolved-search/companies";
 };
@@ -4898,7 +4898,7 @@ export type AdvancedCompanySearchData = {
     /**
      * The point at which results will start from i.e show search results from result 20 (used for paging)
      */
-    start_index?: string;
+    start_index?: number;
   };
   url: "/advanced-search/companies";
 };
@@ -5425,11 +5425,11 @@ export type ListPersonsWithSignificantControlData = {
     /**
      * The number of persons with significant control to return per page.
      */
-    items_per_page?: string;
+    items_per_page?: number;
     /**
      * The offset into the entire result set that this page starts.
      */
-    start_index?: string;
+    start_index?: number;
     /**
      * Display register specific information. If register is held at Companies House and register_view is set to true, only PSCs which are active or were terminated during election period are shown. Accepted values are: -`true`
      * -`false`

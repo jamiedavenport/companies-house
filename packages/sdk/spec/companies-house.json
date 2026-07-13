@@ -303,7 +303,7 @@
             "in": "query",
             "description": "Used in best-match and previous-name-dissolved search-type",
             "required": false,
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {
@@ -472,7 +472,7 @@
             "in": "query",
             "description": "The point at which results will start from i.e show search results from result 20 (used for paging)",
             "required": false,
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {
@@ -1084,14 +1084,14 @@
             "in": "query",
             "description": "The number of persons with significant control to return per page.",
             "required": false,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "start_index",
             "in": "query",
             "description": "The offset into the entire result set that this page starts.",
             "required": false,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "register_view",

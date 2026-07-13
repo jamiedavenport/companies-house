@@ -178,7 +178,8 @@ hoistObjectItems(spec.definitions, "");
 spec.definitions.chargeDetails.properties.links = { $ref: "#/definitions/charge_links" };
 
 // PSC list endpoints wrongly mark their pagination query parameters as
-// required; the live API accepts requests without them.
+// required (and type them as strings, unlike every other endpoint); the live
+// API accepts requests without them and parses numbers.
 for (const item of Object.values(spec.paths)) {
   for (const [method, op] of Object.entries(item)) {
     if (!METHODS.has(method)) continue;
@@ -188,6 +189,7 @@ for (const item of Object.values(spec.paths)) {
         ["items_per_page", "start_index", "register_view"].includes(param.name)
       ) {
         param.required = false;
+        if (param.name !== "register_view") param.type = "integer";
       }
     }
   }
