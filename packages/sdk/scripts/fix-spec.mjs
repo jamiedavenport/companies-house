@@ -195,5 +195,19 @@ for (const item of Object.values(spec.paths)) {
   }
 }
 
+// Tag names are camelCase identifiers, which reference UIs like Scalar render
+// verbatim in the sidebar. Surface each tag's description as its
+// x-displayName, and drop tags that no operation references.
+const usedTags = new Set();
+for (const item of Object.values(spec.paths)) {
+  for (const [method, op] of Object.entries(item)) {
+    if (!METHODS.has(method)) continue;
+    for (const tag of op.tags ?? []) usedTags.add(tag);
+  }
+}
+spec.tags = (spec.tags ?? [])
+  .filter((tag) => usedTags.has(tag.name))
+  .map((tag) => ({ ...tag, "x-displayName": tag["x-displayName"] ?? tag.description }));
+
 writeFileSync(SPEC, `${JSON.stringify(spec, null, 2)}\n`);
 console.log(`fix-spec: normalized ${seenIds.size} operations, hoisted ${hoisted} object schemas`);

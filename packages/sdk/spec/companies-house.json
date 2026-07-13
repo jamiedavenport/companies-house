@@ -17,63 +17,73 @@
   "tags": [
     {
       "name": "registeredOfficeAddress",
-      "description": "Registered office address"
+      "description": "Registered office address",
+      "x-displayName": "Registered office address"
     },
     {
       "name": "companyProfile",
-      "description": "Company profile"
+      "description": "Company profile",
+      "x-displayName": "Company profile"
     },
     {
       "name": "search",
-      "description": "Search"
+      "description": "Search",
+      "x-displayName": "Search"
     },
     {
       "name": "officers",
-      "description": "Officers"
+      "description": "Officers",
+      "x-displayName": "Officers"
     },
     {
       "name": "registers",
-      "description": "Registers"
+      "description": "Registers",
+      "x-displayName": "Registers"
     },
     {
       "name": "charges",
-      "description": "Charges"
+      "description": "Charges",
+      "x-displayName": "Charges"
     },
     {
       "name": "filingHistory",
-      "description": "Filing history"
+      "description": "Filing history",
+      "x-displayName": "Filing history"
     },
     {
       "name": "insolvency",
-      "description": "Insolvency"
+      "description": "Insolvency",
+      "x-displayName": "Insolvency"
     },
     {
       "name": "exemptions",
-      "description": "Exemptions"
+      "description": "Exemptions",
+      "x-displayName": "Exemptions"
     },
     {
       "name": "officerDisqualifications",
-      "description": "Officer disqualifications"
+      "description": "Officer disqualifications",
+      "x-displayName": "Officer disqualifications"
     },
     {
       "name": "officerAppointments",
-      "description": "Officer appointments"
+      "description": "Officer appointments",
+      "x-displayName": "Officer appointments"
     },
     {
       "name": "UKEstablishments",
-      "description": "UK Establishments"
+      "description": "UK Establishments",
+      "x-displayName": "UK Establishments"
     },
     {
       "name": "personsWithSignificantControl",
-      "description": "Persons with significant control"
-    },
-    {
-      "name": "pscDiscrepancies",
-      "description": "PSC discrepancies"
+      "description": "Persons with significant control",
+      "x-displayName": "Persons with significant control"
     },
     {
       "name": "personsWithSignificantControlNotifications",
-      "description": "Persons with significant control notifications"
+      "description": "Persons with significant control notifications",
+      "x-displayName": "Persons with significant control notifications"
     }
   ],
   "paths": {
