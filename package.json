@@ -11,6 +11,8 @@
   },
   "devDependencies": {
     "@changesets/cli": "catalog:",
+    "@jxdltd/companies-house-tooling": "workspace:*",
+    "@types/node": "catalog:",
     "vite": "catalog:",
     "vite-plus": "catalog:"
   },

@@ -1,4 +1,4 @@
 {
   "extends": "@jxdltd/companies-house-tooling/tsconfig.base.json",
-  "include": ["vite.config.ts"]
+  "include": ["src", "test", "openapi-ts.config.ts", "vite.config.ts"]
 }

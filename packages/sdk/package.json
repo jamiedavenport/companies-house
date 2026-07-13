@@ -45,6 +45,8 @@
   "devDependencies": {
     "@hey-api/openapi-ts": "^0.84.4",
     "@jxdltd/companies-house-spec": "workspace:*",
+    "@jxdltd/companies-house-tooling": "workspace:*",
+    "@types/node": "catalog:",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
   },

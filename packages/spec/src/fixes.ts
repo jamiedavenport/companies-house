@@ -17,7 +17,7 @@ const allOperations = (spec: Spec): [string, string, Operation][] =>
 const camel = (s: string): string => {
   const parts = s.split(/[^a-zA-Z0-9]+/).filter(Boolean);
   return parts
-    .map((p, i) => (i === 0 ? p.toLowerCase() : p[0].toUpperCase() + p.slice(1)))
+    .map((p, i) => (i === 0 ? p.toLowerCase() : p.charAt(0).toUpperCase() + p.slice(1)))
     .join("");
 };
 
@@ -145,7 +145,9 @@ export function hoistObjectItems(root: unknown): number {
 // The spec types chargeDetails.links as an array, but the live API returns
 // a single links object ({"self": ...}).
 export function fixChargeLinks(spec: Spec): void {
-  spec.definitions.chargeDetails.properties.links = { $ref: "#/definitions/charge_links" };
+  const properties = spec.definitions.chargeDetails?.properties;
+  if (!properties) throw new Error("chargeDetails definition missing from spec");
+  properties.links = { $ref: "#/definitions/charge_links" };
 }
 
 // PSC list endpoints wrongly mark their pagination query parameters as
