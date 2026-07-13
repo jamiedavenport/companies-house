@@ -1,6 +1,5 @@
 import { createClient, createConfig } from "./generated/client/index.ts";
 import { CompaniesHouse } from "./generated/sdk.gen.ts";
-import { createRetryFetch, type RetryOptions } from "./retry.ts";
 
 export type CompaniesHouseClientOptions = {
   /**
@@ -13,14 +12,11 @@ export type CompaniesHouseClientOptions = {
    */
   baseUrl?: string;
   /**
-   * Underlying fetch implementation.
+   * Underlying fetch implementation. Wrap it to add cross-cutting behavior
+   * such as retries, rate limiting, or logging.
    * @default globalThis.fetch
    */
   fetch?: typeof fetch;
-  /**
-   * Rate-limit-aware retry behavior; pass `false` to disable retries.
-   */
-  retry?: RetryOptions | false;
 };
 
 /** Creates a configured, isolated Companies House SDK instance. */
@@ -29,14 +25,13 @@ export function createCompaniesHouseClient(options: CompaniesHouseClientOptions)
     apiKey,
     baseUrl = "https://api.company-information.service.gov.uk",
     fetch: baseFetch = globalThis.fetch,
-    retry = {},
   } = options;
 
   const client = createClient(
     createConfig({
       auth: () => `${apiKey}:`,
       baseUrl,
-      fetch: retry === false ? baseFetch : createRetryFetch(baseFetch, retry),
+      fetch: baseFetch,
     }),
   );
   return new CompaniesHouse({ client });

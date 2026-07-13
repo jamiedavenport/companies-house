@@ -15,7 +15,7 @@ const { data } = await ch.getCompanyProfile({
 ```
 
 - Fully typed request parameters and responses for all 34 endpoints of the Public Data API.
-- Rate-limit aware: 429 responses wait for the `x-ratelimit-reset` window and retry automatically; transient 5xx responses and network errors retry with exponential backoff. Tune or disable via the `retry` option.
+- Thin by design: a typed transport over `fetch` with auth handled for you; bring your own retry, rate-limiting, or caching policy via the `fetch` option.
 - Isolated instances: create as many clients as you need with different keys; nothing is shared or global.
 - Verified daily: a scheduled integration suite runs every endpoint against the live API, catching upstream drift before you do.
 

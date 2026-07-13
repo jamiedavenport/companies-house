@@ -11,43 +11,20 @@ test("createCompaniesHouseClient returns an isolated SDK instance", () => {
   expect(typeof ch.getCompanyProfile).toBe("function");
 });
 
-test("retry waits for the rate-limit window on 429", async () => {
-  const responses = [
-    new Response("slow down", {
-      status: 429,
-      headers: { "x-ratelimit-reset": String(Math.ceil(Date.now() / 1000) + 1) },
-    }),
-    Response.json({ company_number: "00445790" }),
-  ];
+test("requests go through the provided fetch implementation", async () => {
   const calls: Request[] = [];
   const ch = createCompaniesHouseClient({
     apiKey: "test",
     fetch: (input) => {
       calls.push(input as Request);
-      return Promise.resolve(responses[calls.length - 1] as Response);
+      return Promise.resolve(Response.json({ company_number: "00445790" }));
     },
   });
 
   const { data, response } = await ch.getCompanyProfile({
     path: { company_number: "00445790" },
   });
-  expect(calls.length).toBe(2);
+  expect(calls.length).toBe(1);
   expect(response.status).toBe(200);
   expect(data?.company_number).toBe("00445790");
-});
-
-test("retry gives up after maxRetries on 5xx", async () => {
-  let calls = 0;
-  const ch = createCompaniesHouseClient({
-    apiKey: "test",
-    retry: { maxRetries: 2, backoffBaseMs: 1 },
-    fetch: () => {
-      calls++;
-      return Promise.resolve(new Response("boom", { status: 502 }));
-    },
-  });
-
-  const { response } = await ch.getCompanyProfile({ path: { company_number: "00445790" } });
-  expect(response.status).toBe(502);
-  expect(calls).toBe(3);
 });
