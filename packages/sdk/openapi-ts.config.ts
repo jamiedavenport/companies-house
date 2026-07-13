@@ -1,7 +1,8 @@
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "@hey-api/openapi-ts";
 
 export default defineConfig({
-  input: "./spec/companies-house.json",
+  input: fileURLToPath(import.meta.resolve("@jxdltd/companies-house-spec/openapi.json")),
   output: "src/generated",
   plugins: [
     "@hey-api/client-fetch",

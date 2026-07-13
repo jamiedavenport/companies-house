@@ -23,8 +23,7 @@
     "directory": "packages/sdk"
   },
   "files": [
-    "dist",
-    "spec/companies-house.json"
+    "dist"
   ],
   "type": "module",
   "sideEffects": false,
@@ -33,21 +32,19 @@
       "types": "./dist/index.d.mts",
       "default": "./dist/index.mjs"
     },
-    "./openapi.json": "./spec/companies-house.json"
+    "./openapi.json": "./dist/openapi.json"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "vp pack",
+    "build": "vp pack && cp ../spec/spec/companies-house.json dist/openapi.json",
     "generate": "openapi-ts",
-    "download-spec": "node scripts/download-spec.ts",
-    "test": "vp test run",
-    "update-spec": "redocly bundle spec/swagger.json -o spec/companies-house.json --ext json && node scripts/fix-spec.ts"
+    "test": "vp test run"
   },
   "devDependencies": {
     "@hey-api/openapi-ts": "^0.84.4",
-    "@redocly/cli": "^2.4.0",
+    "@jxdltd/companies-house-spec": "workspace:*",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
   },

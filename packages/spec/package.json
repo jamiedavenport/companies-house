@@ -1,0 +1,21 @@
+{
+  "name": "@jxdltd/companies-house-spec",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Curated OpenAPI spec for the Companies House Public Data API and the scripts that maintain it",
+  "type": "module",
+  "exports": {
+    "./openapi.json": "./spec/companies-house.json"
+  },
+  "scripts": {
+    "download-spec": "node scripts/download-spec.ts",
+    "update-spec": "redocly bundle spec/swagger.json -o spec/companies-house.json --ext json && node scripts/fix-spec.ts"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^2.4.0",
+    "typescript": "catalog:"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}
