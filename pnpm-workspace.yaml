@@ -6,6 +6,7 @@ packages:
 catalogMode: prefer
 
 catalog:
+  "@changesets/cli": ^2.31.0
   "@types/node": ^24
   typescript: ^5
   vite: npm:@voidzero-dev/vite-plus-core@0.2.2

@@ -1,12 +1,45 @@
 {
   "name": "@jxdltd/companies-house",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "A modern, fully typed TypeScript SDK for the Companies House Public Data API",
+  "keywords": [
+    "api",
+    "companies house",
+    "companies-house",
+    "company",
+    "sdk",
+    "typescript",
+    "uk"
+  ],
+  "homepage": "https://github.com/jamiedavenport/companies-house/tree/main/packages/sdk#readme",
+  "bugs": {
+    "url": "https://github.com/jamiedavenport/companies-house/issues"
+  },
+  "license": "MIT",
+  "author": "Jamie Davenport",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamiedavenport/companies-house.git",
+    "directory": "packages/sdk"
+  },
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "sideEffects": false,
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
+    "build": "vp pack",
     "generate": "openapi-ts",
+    "test": "vp test run",
     "update-spec": "redocly bundle spec/swagger.json -o spec/companies-house.json --ext json && node scripts/fix-spec.mjs"
   },
   "devDependencies": {
@@ -14,5 +47,8 @@
     "@redocly/cli": "^2.4.0",
     "typescript": "catalog:",
     "vite-plus": "catalog:"
+  },
+  "engines": {
+    "node": ">=22.18.0"
   }
 }

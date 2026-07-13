@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "ready": "vp check && vp run -r test && vp run -r build",
+    "release": "vp run -r build && changeset publish",
     "dev": "vp run website#dev",
     "prepare": "vp config"
   },
   "devDependencies": {
+    "@changesets/cli": "catalog:",
     "vite": "catalog:",
     "vite-plus": "catalog:"
   },
