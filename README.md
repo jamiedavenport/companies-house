@@ -1,5 +1,11 @@
 [![Companies House SDK](./assets/banner.png)](https://companies-house.jxd.dev)
 
+[![npm version](https://img.shields.io/npm/v/%40jxdltd%2Fcompanies-house)](https://www.npmjs.com/package/@jxdltd/companies-house)
+[![Integration](https://github.com/jamiedavenport/companies-house/actions/workflows/integration.yml/badge.svg)](https://github.com/jamiedavenport/companies-house/actions/workflows/integration.yml)
+[![Release](https://github.com/jamiedavenport/companies-house/actions/workflows/release.yml/badge.svg)](https://github.com/jamiedavenport/companies-house/actions/workflows/release.yml)
+[![license](https://img.shields.io/npm/l/%40jxdltd%2Fcompanies-house)](./LICENSE)
+[![node](https://img.shields.io/node/v/%40jxdltd%2Fcompanies-house)](https://www.npmjs.com/package/@jxdltd/companies-house)
+
 A _modern_ TypeScript SDK for the Companies House API.
 
 Read the story behind it: [Companies House's API spec is broken. Ours isn't.](https://www.jxd.dev/blog/companies-house-sdk)
