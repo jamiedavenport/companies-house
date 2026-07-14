@@ -4,12 +4,21 @@ on:
   schedule:
     # Daily at 06:00 UTC; spots upstream API/spec drift.
     - cron: "0 6 * * *"
+  push:
+    branches: [main]
+  pull_request:
   workflow_dispatch:
 
 jobs:
   live-api:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # Forked PRs cannot read the CH_API_KEY secret; the tests would skip or
+    # 401, so only run for same-repo events.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    concurrency:
+      group: live-api-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
