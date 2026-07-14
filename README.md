@@ -1,4 +1,4 @@
-# Companies House SDK
+[![Companies House SDK](./assets/banner.png)](https://companies-house.jxd.dev)
 
 A _modern_ TypeScript SDK for the Companies House API.
 
