@@ -455,18 +455,9 @@ importers:
 
   packages/spec:
     devDependencies:
-      '@jxdltd/companies-house-tooling':
-        specifier: workspace:*
-        version: link:../tooling
       '@redocly/cli':
         specifier: ^2.4.0
         version: 2.38.0
-      '@types/node':
-        specifier: 'catalog:'
-        version: 24.13.3
-      typescript:
-        specifier: 'catalog:'
-        version: 5.9.3
 
   packages/tooling: {}
 

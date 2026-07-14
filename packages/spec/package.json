@@ -7,15 +7,8 @@
   "exports": {
     "./openapi.json": "./spec/companies-house.json"
   },
-  "scripts": {
-    "download-spec": "node src/download-spec.ts",
-    "update-spec": "redocly bundle spec/swagger.json -o spec/companies-house.json --ext json && node src/fix-spec.ts"
-  },
   "devDependencies": {
-    "@jxdltd/companies-house-tooling": "workspace:*",
-    "@redocly/cli": "^2.4.0",
-    "@types/node": "catalog:",
-    "typescript": "catalog:"
+    "@redocly/cli": "^2.4.0"
   },
   "engines": {
     "node": ">=22.18.0"
