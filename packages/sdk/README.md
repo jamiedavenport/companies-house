@@ -7,6 +7,8 @@ A modern TypeScript SDK for the [Companies House Public Data API](https://develo
 - Isolated instances: create as many clients as you need with different keys; nothing is shared or global.
 - Verified daily: a scheduled integration suite runs every endpoint against the live API, catching upstream drift.
 
+Read the story behind it: [Companies House's API spec is broken. Ours isn't.](https://www.jxd.dev/blog/companies-house-sdk)
+
 ## Installation
 
 ```sh

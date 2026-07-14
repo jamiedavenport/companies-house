@@ -56,6 +56,11 @@ export default defineConfig({
           ],
         },
         { label: "API Reference", link: "/reference" },
+        {
+          label: "Blog Post",
+          link: "https://www.jxd.dev/blog/companies-house-sdk",
+          attrs: { target: "_blank" },
+        },
       ],
     }),
   ],

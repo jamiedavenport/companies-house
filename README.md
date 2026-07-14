@@ -2,6 +2,8 @@
 
 A _modern_ TypeScript SDK for the Companies House API.
 
+Read the story behind it: [Companies House's API spec is broken. Ours isn't.](https://www.jxd.dev/blog/companies-house-sdk)
+
 ## Usage
 
 ```ts
