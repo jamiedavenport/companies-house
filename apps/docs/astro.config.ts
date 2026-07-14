@@ -1,5 +1,6 @@
 import starlight from "@astrojs/starlight";
 import { defineConfig } from "astro/config";
+import starlightLlmsTxt from "starlight-llms-txt";
 
 export default defineConfig({
   site: "https://companies-house.jxd.dev",
@@ -8,6 +9,30 @@ export default defineConfig({
       title: "Companies House SDK",
       description: "A modern, fully typed TypeScript SDK for the Companies House Public Data API.",
       favicon: "/favicon.svg",
+      plugins: [
+        starlightLlmsTxt({
+          details: [
+            "- npm package: `@jxdltd/companies-house` (ESM, TypeScript)",
+            "- Server-side only: the Companies House API key must never be exposed to a browser.",
+            "- Thin by design: a typed transport over `fetch` with auth handled for you. Retries, rate limiting, caching, and pagination are the consumer's responsibility (customise via the `fetch` option).",
+            "- Requests return a `{ data, error }` result object rather than throwing on API errors.",
+            "- The OpenAPI spec ships with the package as `@jxdltd/companies-house/openapi.json`.",
+          ].join("\n"),
+          optionalLinks: [
+            {
+              label: "API Reference (markdown)",
+              url: "https://companies-house.jxd.dev/llms-openapi.txt",
+              description:
+                "All Public Data API endpoints, parameters, and schemas rendered as markdown from the OpenAPI spec",
+            },
+            {
+              label: "Announcement blog post",
+              url: "https://www.jxd.dev/blog/companies-house-sdk",
+              description: "The story behind the SDK and how the spec was rebuilt",
+            },
+          ],
+        }),
+      ],
       social: [
         {
           icon: "github",

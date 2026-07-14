@@ -14,7 +14,9 @@
     "@jxdltd/companies-house-spec": "workspace:*",
     "@scalar/api-reference": "^1.62.5",
     "@scalar/astro": "^0.4.9",
-    "astro": "^5.18.2"
+    "@scalar/openapi-to-markdown": "catalog:",
+    "astro": "^5.18.2",
+    "starlight-llms-txt": "catalog:"
   },
   "devDependencies": {
     "wrangler": "^4.110.0"

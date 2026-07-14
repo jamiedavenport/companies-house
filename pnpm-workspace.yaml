@@ -7,7 +7,10 @@ catalogMode: prefer
 
 catalog:
   "@changesets/cli": ^2.31.0
+  "@scalar/openapi-to-markdown": ^0.5.32
   "@types/node": ^24
+  # Pinned to 0.7.x: 0.8+ requires Astro 6, we're on Astro 5.
+  starlight-llms-txt: ^0.7.0
   typescript: ^5
   vite: npm:@voidzero-dev/vite-plus-core@0.2.2
   vite-plus: 0.2.2
