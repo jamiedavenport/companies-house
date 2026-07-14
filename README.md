@@ -44,3 +44,7 @@ In short: the official SDK exists but is designed around Companies House's inter
 - [Vite+](https://viteplus.dev/) - Unified toolchain (`vp`) wrapping Vite, Rolldown, Vitest, tsdown, Oxlint, and Oxfmt for dev, build, test, lint, and formatting.
 - [pnpm](https://pnpm.io/) workspaces - Monorepo layout with `apps/*`, `packages/*`, and `tools/*`, using catalog-pinned dependencies.
 - [TypeScript](https://www.typescriptlang.org/) - Strictly typed throughout, published as ESM.
+
+## Work with us
+
+Building something that relies on Companies House data? This SDK is built and maintained by [JXD](https://jxd.dev), a London software consultancy. We're here to help, [get in touch](https://www.jxd.dev/contact).
