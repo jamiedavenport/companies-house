@@ -45,7 +45,7 @@ describeLive("search endpoints", () => {
   test("advancedCompanySearch filters companies", async () => {
     const data = expectData(
       await ch.advancedCompanySearch({
-        query: { company_name_includes: "tesco", company_status: "active" },
+        query: { company_name_includes: "tesco", company_status: ["active"] },
       }),
     );
     expect(data.items?.length).toBeGreaterThan(0);

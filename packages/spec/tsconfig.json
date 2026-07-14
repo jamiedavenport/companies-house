@@ -1,4 +1,0 @@
-{
-  "extends": "@jxdltd/companies-house-tooling/tsconfig.base.json",
-  "include": ["src"]
-}
