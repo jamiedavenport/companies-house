@@ -1,6 +1,8 @@
 [![Companies House SDK](./assets/banner.png)](https://companies-house.jxd.dev)
 
 [![npm version](https://img.shields.io/npm/v/%40jxdltd%2Fcompanies-house)](https://www.npmjs.com/package/@jxdltd/companies-house)
+[![minified size](https://img.shields.io/bundlephobia/min/%40jxdltd%2Fcompanies-house)](https://bundlephobia.com/package/@jxdltd/companies-house)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/%40jxdltd%2Fcompanies-house)](https://bundlephobia.com/package/@jxdltd/companies-house)
 [![Integration](https://github.com/jamiedavenport/companies-house/actions/workflows/integration.yml/badge.svg)](https://github.com/jamiedavenport/companies-house/actions/workflows/integration.yml)
 [![Release](https://github.com/jamiedavenport/companies-house/actions/workflows/release.yml/badge.svg)](https://github.com/jamiedavenport/companies-house/actions/workflows/release.yml)
 [![license](https://img.shields.io/npm/l/%40jxdltd%2Fcompanies-house)](./LICENSE)
