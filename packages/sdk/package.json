@@ -1,6 +1,6 @@
 {
   "name": "@jxdltd/companies-house",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A modern, fully typed TypeScript SDK for the Companies House Public Data API",
   "keywords": [
     "api",

@@ -1,5 +1,11 @@
 # @jxdltd/companies-house
 
+## 0.2.1
+
+### Patch Changes
+
+- de65cbc: Align the package README with the root README: banner, badges, blog link, and Work with us section
+
 ## 0.2.0
 
 ### Minor Changes
